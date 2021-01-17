@@ -80,10 +80,6 @@ spec:
 
 ```
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.10.png  "pod.yaml")
-
-
-
 Ahora desplegamos el pod a partir del pod.yaml previamente configurado:
 
 ```sh
@@ -108,13 +104,13 @@ $ kubectl get pods
 
 Una vez mi pod esta corriendo podemos responder las siguientes preguntas:
 
-• ¿Cómo puedo obtener las últimas 10 líneas de la salida estándar (logs generados por la aplicación)?
+**• ¿Cómo puedo obtener las últimas 10 líneas de la salida estándar (logs generados por la aplicación)?**
 ```sh
 $ kubectl logs --tail=10 nginx-server-v1
 ```
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.3.png  "Logs")
 
-• ¿Cómo podría obtener la IP interna del pod? Aporta capturas para indicar el proceso que seguirías.
+**• ¿Cómo podría obtener la IP interna del pod? Aporta capturas para indicar el proceso que seguirías.**
 ```sh
 $ kubectl get pods -o wide
 ```
@@ -126,13 +122,13 @@ kubectl describe pod nginx-server-v1
 ```
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.4.png  "Pod Describe")
 
-• ¿Qué comando utilizarías para entrar dentro del pod?
+**• ¿Qué comando utilizarías para entrar dentro del pod?**
 ```sh
 $ kubectl exec -it nginx-server-v1 -- bash
 ```
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.6.png  "Pod Bash")
 
-• Necesitas visualizar el contenido que expone NGINX, ¿qué acciones debes llevar a cabo?
+**• Necesitas visualizar el contenido que expone NGINX, ¿qué acciones debes llevar a cabo?**
 Podemos hacer port-forward del trafico del puerto 80 (Nginx port) al puerto 8080 (local port de mi machine) :
 ```sh
 $ kubectl port-forward pod/nginx-server-v1 8080:80
@@ -142,7 +138,7 @@ Otra manera es creando un servicio de tipo NodePort, que permite abrir un puerto
 $ kubectl expose node/nginx-server-v1 --port 80 --name nginx-server-v1 --type NodePort
 ```
 
-• Indica la calidad de servicio (QoS) establecida en el pod que acabas de crear. ¿Qué lo has mirado?
+**• Indica la calidad de servicio (QoS) establecida en el pod que acabas de crear. ¿Qué lo has mirado?**
 El siguiente comando nos permite ver todas las caracteristicas de mi pod:
 ```sh
 $ kubectl describe pod nginx-server-v1
