@@ -3,7 +3,7 @@
 
 •  Debe tener 3 replicas
 
-## Desarrollo
+### Desarrollo
 
 Configuramos nuestro archivo .yaml con las siguientes especificaciones:
 
@@ -42,7 +42,7 @@ Podemos ver que tenemos 3 nuevas replicas de nuestro pod nginx:
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/replica1.0.png  "ReplicaSet")
 
-## ¿Cúal sería el comando que utilizarías para escalar el número de replicas a 10?
+### ¿Cúal sería el comando que utilizarías para escalar el número de replicas a 10?
 
 Ahora para escalar el numero de replicas a 10....
 
@@ -60,7 +60,7 @@ $ kubectl get all
 ```
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/replica1.1.png  "ScaleReplicaSet")
 
-## Si necesito tener una replica en cada uno de los nodos de Kubernetes, ¿qué objeto se adaptaría mejor? 
+### Si necesito tener una replica en cada uno de los nodos de Kubernetes, ¿qué objeto se adaptaría mejor? 
 
 - DaemonSet : un DaemonSet garantiza que todos los nodos ejecuten una replica de un Pod, el emplazamiento es especifico
 
