@@ -110,17 +110,17 @@ $ kubectl logs --tail=10 nginx-server-v1
 ```
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.3.png  "Logs")
 
-**• ¿Cómo podría obtener la IP interna del pod? Aporta capturas para indicar el proceso que seguirías.**
+**• ¿Cómo podría obtener la IP interna del pod?**
 ```sh
 $ kubectl get pods -o wide
 ```
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.4.png  "Pod Ip")
-
-o tambien...
+Podemos ver que la IP del pod es la 172.17.0.5
+o tambien con el siguiente comando podemos ver todos los detalles del pod...
 ```sh
 kubectl describe pod nginx-server-v1
 ```
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.4.png  "Pod Describe")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.5.png  "Pod Describe")
 
 **• ¿Qué comando utilizarías para entrar dentro del pod?**
 ```sh
@@ -129,14 +129,32 @@ $ kubectl exec -it nginx-server-v1 -- bash
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.6.png  "Pod Bash")
 
 **• Necesitas visualizar el contenido que expone NGINX, ¿qué acciones debes llevar a cabo?**
-Podemos hacer port-forward del trafico del puerto 80 (Nginx port) al puerto 8080 (local port de mi machine) :
+
+Podemos hacer port-forward del trafico del puerto 80 (Nginx expose port) al puerto 8080 (local port de mi machine) :
 ```sh
 $ kubectl port-forward pod/nginx-server-v1 8080:80
 ```
-Otra manera es creando un servicio de tipo NodePort, que permite abrir un puerto para comunicarme con mi nodo desde el exterior, para esto hacemos lo siguiente:
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.8.png  "Port Forward")
+Ahora desde otro terminal nos conectamos a la 127.0.0.1:8080 para visualizar el contenido NGINX
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.9.png  "Port Forward")
+
+Otra manera es creando un servicio de tipo ClusterIP, que permite la comunicación interna en los nodos de mi cluter, para esto hacemos lo siguiente:
+
+en el **--port 80** indicamos el puerto en el que el contenedor de NGINX acepta tráfico 
 ```sh
-$ kubectl expose node/nginx-server-v1 --port 80 --name nginx-server-v1 --type NodePort
+$ kubectl expose pod/nginx-server-v1 --port 80 --name nginx-server-v1
+$ kubectl get services
 ```
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.12.png  "ClusterIP")
+Ahora entramos al pod ...
+```sh
+$ kubectl exec -it nginx-server-v1 -- bash
+```
+y desde el pod nos conectamos al puerto 80 del servicio que creamos
+```sh
+root@nginx-server-v1:/# curl localhost:80
+```
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.13.png  "NGINX")
 
 **• Indica la calidad de servicio (QoS) establecida en el pod que acabas de crear. ¿Qué lo has mirado?**
 El siguiente comando nos permite ver todas las caracteristicas de mi pod:
