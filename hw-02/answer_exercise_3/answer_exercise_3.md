@@ -52,9 +52,29 @@ $ kubectl describe service nginx-server
 
 **3. Abriendo un puerto especifico de la VM (crea service3.yaml)**
 
-En el service2.yaml se configuraron los puertos **port y targetPort**, en donde **port**: es el puerto de servicio abstraído, que puede ser cualquier puerto que utilicen otros pods para acceder al servicio y **targetPort**: es el puerto en el que el contenedor acepta tráfico, para el contenedor de nginx es el puerto 80.
-
 Para esto debemos crear un servicio de tipo NodePort
+
+Configuramos nuestro yaml como se muestra a continuación:
+
+**service2.yaml**
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-server-np
+spec:
+  selector:
+    app: nginx-server
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 80
+      name: https
+```
+
+En el service3.yaml se configuraron los puertos **port y targetPort**, en donde **port**: es el puerto de servicio abstraído, que puede ser cualquier puerto que utilicen otros pods para acceder al servicio y **targetPort**: es el puerto en el que el contenedor acepta tráfico, para el contenedor de nginx es el puerto 80.
 
 ```sh
 
@@ -63,3 +83,12 @@ $ kubectl create -f answer_exercise_3/service3.yaml
 $ kubectl get services
 
 ```
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/services3.1.png  "NodePort Service")
+
+```sh
+
+$ kubectl describe service nginx-server
+
+```
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/services3.2.png  "NodePort Service")
