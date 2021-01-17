@@ -7,7 +7,7 @@
 
 • Si necesito tener una replica en cada uno de los nodos de Kubernetes, ¿qué objeto se adaptaría mejor?
 
-### Desarrollo
+## Desarrollo
 
 Configuramos nuestro archivo .yaml con las siguientes especificaciones:
 
