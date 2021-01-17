@@ -80,7 +80,7 @@ spec:
 
 ```
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/master/hw-02/images/kube1.10.png  "pod.yaml")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.10.png  "pod.yaml")
 
 
 
@@ -92,7 +92,7 @@ $ kubectl create -f answer_exercise_1/pod.yaml
 
 ```
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/master/hw-02/images/kube1.1.png  "Created Pod")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.1.png  "Created Pod")
 
   
 
@@ -104,7 +104,7 @@ $ kubectl get pods
 
 ```
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/master/hw-02/images/kube1.1.png  "Running Pod")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.1.png  "Running Pod")
 
 Una vez mi pod esta corriendo podemos responder las siguientes preguntas:
 
@@ -112,25 +112,25 @@ Una vez mi pod esta corriendo podemos responder las siguientes preguntas:
 ```sh
 $ kubectl logs --tail=10 nginx-server-v1
 ```
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/master/hw-02/images/kube1.3.png  "Logs")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.3.png  "Logs")
 
 • ¿Cómo podría obtener la IP interna del pod? Aporta capturas para indicar el proceso que seguirías.
 ```sh
 $ kubectl get pods -o wide
 ```
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/master/hw-02/images/kube1.4.png  "Pod Ip")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.4.png  "Pod Ip")
 
 o tambien...
 ```sh
 kubectl describe pod nginx-server-v1
 ```
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/master/hw-02/images/kube1.4.png  "Pod Describe")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.4.png  "Pod Describe")
 
 • ¿Qué comando utilizarías para entrar dentro del pod?
 ```sh
 $ kubectl exec -it nginx-server-v1 -- bash
 ```
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/master/hw-02/images/kube1.6.png  "Pod Bash")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.6.png  "Pod Bash")
 
 • Necesitas visualizar el contenido que expone NGINX, ¿qué acciones debes llevar a cabo?
 Podemos hacer port-forward del trafico del puerto 80 (Nginx port) al puerto 8080 (local port de mi machine) :
@@ -147,8 +147,8 @@ El siguiente comando nos permite ver todas las caracteristicas de mi pod:
 ```sh
 $ kubectl describe pod nginx-server-v1
 ```
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/master/hw-02/images/kube1.6.png  "Pod QoS")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.6.png  "Pod QoS")
 
 Podemos ver que el QoS Class esta Guaranteed, esto ocurre por como hemos configurado el pod.yaml, en donde el pod debe tener un límite (limits) de memoria y una solicitud (requests) de memoria iguales y un límite (limits) de CPU y una solicitud (requests) de CPU iguales, es decir:
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/master/hw-02/images/kube1.11.png  "pod resources yaml")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.11.png  "pod resources yaml")
