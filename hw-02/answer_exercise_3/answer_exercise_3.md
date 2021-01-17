@@ -95,7 +95,7 @@ $ kubectl describe service nginx-server
 
 Para verificar que mi servicio funciona correctamente:
 
-Hago un curl de mi nginx NodePort Service <MINIKUBE-IP>:<PORT> 
+Hago un curl de mi nginx NodePort Service < MINIKUBE-IP >:< PORT >
 
 ```sh
 
