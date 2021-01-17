@@ -56,7 +56,7 @@ Para esto debemos crear un servicio de tipo NodePort
 
 Configuramos nuestro yaml como se muestra a continuación:
 
-**service2.yaml**
+**service3.yaml**
 
 ```yaml
 apiVersion: v1
@@ -83,7 +83,7 @@ $ kubectl create -f answer_exercise_3/service3.yaml
 $ kubectl get services
 
 ```
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/services3.1.png  "NodePort Service")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/services3.1.png  "NodePort Service 1")
 
 ```sh
 
@@ -91,4 +91,19 @@ $ kubectl describe service nginx-server
 
 ```
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/services3.2.png  "NodePort Service")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/services3.2.png  "NodePort Service 2")
+
+Para verificar que mi servicio funciona correctamente:
+
+Hago un curl de mi nginx NodePort Service <MINIKUBE-IP>:<PORT> 
+
+```sh
+
+$ minikube ip
+
+$ curl 192.168.64.2:32692
+
+```
+
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/services3.3.png  "NodePort Service 3")
