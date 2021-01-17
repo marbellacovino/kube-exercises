@@ -67,6 +67,8 @@ $ kubectl get all
 
 ### Si necesito tener una replica en cada uno de los nodos de Kubernetes, ¿qué objeto se adaptaría mejor? 
 
-- DaemonSet : un DaemonSet garantiza que todos los nodos ejecuten una replica de un Pod, el emplazamiento es especifico
+## - DaemonSet 
+
+ Un DaemonSet garantiza que todos los nodos ejecuten una replica de un Pod, el emplazamiento es especifico
 
 
