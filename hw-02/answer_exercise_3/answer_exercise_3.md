@@ -15,6 +15,20 @@
 
 Para esto debemos crear un servicio de tipo ClusterIP
 
+**service2.yaml**
+
+```yaml
+kind: Service
+metadata:
+  name: nginx-server
+spec:
+  selector:
+    app: nginx-server
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 80 
+```
 
 ```sh
 
