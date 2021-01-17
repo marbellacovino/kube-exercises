@@ -2,7 +2,9 @@
 ## Crear un objeto de tipo replicaSet a partir del [pod](https://github.com/marbellacovino/kube-exercises/tree/main/hw-02/answer_exercise_1) con las siguientes especificaciones:
 
 •  Debe tener 3 replicas
+
 • ¿Cúal sería el comando que utilizarías para escalar el número de replicas a 10?
+
 • Si necesito tener una replica en cada uno de los nodos de Kubernetes, ¿qué objeto se adaptaría mejor?
 
 ### Desarrollo
