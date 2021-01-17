@@ -50,6 +50,21 @@ $ kubectl describe service nginx-server
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/services2.1.png  "ClusterIP Service")
 
+Para verificar que mi servicio funciona correctamente, podemos hacer un curl localhost:80 dentro del pod 
+
+```sh
+
+$ kubectl exec -it nginx-server-v1 -- bash
+
+```
+```sh
+
+root@nginx-server-v1:/# curl localhost:80
+
+```
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/services2.2.png  "ClusterIP Service")
+
 **3. Abriendo un puerto especifico de la VM (crea service3.yaml)**
 
 Para esto debemos crear un servicio de tipo NodePort
