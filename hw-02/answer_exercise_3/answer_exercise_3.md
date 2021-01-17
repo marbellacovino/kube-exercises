@@ -28,11 +28,11 @@ spec:
     app: nginx-server
   ports:
     - protocol: TCP
-      port: 8080
-      targetPort: 80 
+      port: 80 
 ```
 
-En el service2.yaml se configuraron los puertos **port y targetPort**, en donde **port**: es el puerto de servicio abstraído, que puede ser cualquier puerto que utilicen otros pods para acceder al servicio y **targetPort**: es el puerto en el que el contenedor acepta tráfico, para el contenedor de [nginx es el puerto 80](https://github.com/marbellacovino/kube-exercises/blob/main/README.md).
+Esta especificación creará un servicio con target al puerto TCP 80 en cualquier Pod con la etiqueta app: nginx-server
+
 ```sh
 
 $ kubectl create -f answer_exercise_3/service2.yaml  
@@ -40,8 +40,19 @@ $ kubectl create -f answer_exercise_3/service2.yaml
 $ kubectl get services
 
 ```
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/services2.0.png  "ClusterIP Service")
+
+```sh
+
+$ kubectl describe service nginx-server
+
+```
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/services2.1.png  "ClusterIP Service")
 
 **3. Abriendo un puerto especifico de la VM (crea service3.yaml)**
+
+En el service2.yaml se configuraron los puertos **port y targetPort**, en donde **port**: es el puerto de servicio abstraído, que puede ser cualquier puerto que utilicen otros pods para acceder al servicio y **targetPort**: es el puerto en el que el contenedor acepta tráfico, para el contenedor de nginx es el puerto 80.
 
 Para esto debemos crear un servicio de tipo NodePort
 
