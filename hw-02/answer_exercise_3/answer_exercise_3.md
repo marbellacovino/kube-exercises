@@ -32,7 +32,7 @@ spec:
       targetPort: 80 
 ```
 
-En el service2.yaml se configuraron los puertos **port y targetPort**, en donde **port**: es el puerto de servicio abstraído, que puede ser cualquier puerto que utilicen otros pods para acceder al servicio y **targetPort**: es el puerto en el que el contenedor acepta tráfico, en este caso el puerto 80.
+En el service2.yaml se configuraron los puertos **port y targetPort**, en donde **port**: es el puerto de servicio abstraído, que puede ser cualquier puerto que utilicen otros pods para acceder al servicio y **targetPort**: es el puerto en el que el contenedor acepta tráfico, para el contenedor de [nginx es el puerto 80](https://github.com/marbellacovino/kube-exercises/blob/main/README.md).
 ```sh
 
 $ kubectl create -f answer_exercise_3/service2.yaml  
