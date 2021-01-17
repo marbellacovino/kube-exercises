@@ -47,7 +47,7 @@ $ kubectl explain pod.spec.containers.resources
 
 ```
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/master/hw-02/images/kube1.0.png  "Pod Specs")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.0.png  "Pod Specs")
 
   
 
@@ -151,4 +151,4 @@ $ kubectl describe pod nginx-server-v1
 
 Podemos ver que el QoS Class esta Guaranteed, esto ocurre por como hemos configurado el pod.yaml, en donde el pod debe tener un límite (limits) de memoria y una solicitud (requests) de memoria iguales y un límite (limits) de CPU y una solicitud (requests) de CPU iguales, es decir:
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.11.png  "pod resources yaml")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube.1.11.png  "pod resources yaml")
