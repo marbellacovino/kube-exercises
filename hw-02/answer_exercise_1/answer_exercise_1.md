@@ -140,17 +140,17 @@ Ahora desde otro terminal nos conectamos a la 127.0.0.1:8080 para visualizar el 
 
 Otra manera es creando un servicio de tipo ClusterIP, que permite la comunicación interna en los nodos de mi cluter, para esto hacemos lo siguiente:
 
-en el **--port 80** indicamos el puerto en el que el contenedor de NGINX acepta tráfico 
 ```sh
 $ kubectl expose pod/nginx-server-v1 --port 80 --name nginx-server-v1
 $ kubectl get services
 ```
+en el **--port** indicamos el puerto 80, el puerto en el que el contenedor de NGINX acepta tráfico 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.12.png  "ClusterIP")
-Ahora entramos al pod ...
+Con nuestro servicio listo, ya podemos visualizar el contenido de Nginx. Primero debemos entrar dentro del pod...
 ```sh
 $ kubectl exec -it nginx-server-v1 -- bash
 ```
-y desde el pod nos conectamos al puerto 80 del servicio que creamos
+y desde el pod nos conectamos al puerto 80 para acceder al servicio que creamos
 ```sh
 root@nginx-server-v1:/# curl localhost:80
 ```
