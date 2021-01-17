@@ -162,11 +162,12 @@ root@nginx-server-v1:/# curl localhost:80
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.13.png  "NGINX")
 
 **• Indica la calidad de servicio (QoS) establecida en el pod que acabas de crear. ¿Qué lo has mirado?**
+
 El siguiente comando nos permite ver todas las caracteristicas de mi pod:
 ```sh
 $ kubectl describe pod nginx-server-v1
 ```
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.6.png  "Pod QoS")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.7.png  "Pod QoS")
 
 Podemos ver que el QoS Class esta Guaranteed, esto ocurre por como hemos configurado el pod.yaml, en donde el pod debe tener un límite (limits) de memoria y una solicitud (requests) de memoria iguales y un límite (limits) de CPU y una solicitud (requests) de CPU iguales, es decir:
 
