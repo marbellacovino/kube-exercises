@@ -115,6 +115,7 @@ $ kubectl logs --tail=10 nginx-server-v1
 $ kubectl get pods -o wide
 ```
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.4.png  "Pod Ip")
+
 Podemos ver que la IP del pod es la 172.17.0.5
 o tambien con el siguiente comando podemos ver todos los detalles del pod...
 ```sh
@@ -135,17 +136,21 @@ Podemos hacer port-forward del trafico del puerto 80 (Nginx expose port) al puer
 $ kubectl port-forward pod/nginx-server-v1 8080:80
 ```
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.8.png  "Port Forward")
+
 Ahora desde otro terminal nos conectamos a la 127.0.0.1:8080 para visualizar el contenido NGINX
+
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.9.png  "Port Forward")
 
 Otra manera es creando un servicio de tipo ClusterIP, que permite la comunicación interna en los nodos de mi cluter, para esto hacemos lo siguiente:
 
+Indicamos como **--port** el puerto 80, el puerto en el que el contenedor de NGINX acepta tráfico 
 ```sh
 $ kubectl expose pod/nginx-server-v1 --port 80 --name nginx-server-v1
 $ kubectl get services
 ```
-en el **--port** indicamos el puerto 80, el puerto en el que el contenedor de NGINX acepta tráfico 
+
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.12.png  "ClusterIP")
+
 Con nuestro servicio listo, ya podemos visualizar el contenido de Nginx. Primero debemos entrar dentro del pod...
 ```sh
 $ kubectl exec -it nginx-server-v1 -- bash
