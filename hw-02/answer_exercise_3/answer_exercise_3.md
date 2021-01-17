@@ -15,6 +15,8 @@
 
 Para esto debemos crear un servicio de tipo ClusterIP
 
+Configuramos nuestro yaml como se muestra a continuación:
+
 **service2.yaml**
 
 ```yaml
@@ -30,6 +32,7 @@ spec:
       targetPort: 80 
 ```
 
+En el service2.yaml se configuraron los puertos *port y targetPort*, en donde *port*: es el puerto de servicio abstraído, que puede ser cualquier puerto que utilicen otros pods para acceder al servicio y *targetPort*: es el puerto en el que el contenedor acepta tráfico
 ```sh
 
 $ kubectl create -f answer_exercise_3/service2.yaml  
