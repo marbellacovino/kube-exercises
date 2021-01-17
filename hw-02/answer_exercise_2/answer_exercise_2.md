@@ -34,6 +34,7 @@ spec:
       - name: nginx-server
         image: nginx:1.19.4
 ```
+Ahora creamos el ReplicaSet a partir de nuestro archivo de configuración replicaset.yaml:
 
 ```sh
 
@@ -42,7 +43,7 @@ $ kubectl create -f answer_exercise_2/replicaset.yaml
 $ kubectl get all
 
 ```
-Podemos ver que tenemos 3 nuevas replicas de nuestro pod nginx:
+Una vez creado con *kubectl get all* podemos ver las 3 nuevas replicas de nuestro pod nginx y el replicaset configurado a 3 replicas:
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/replica1.0.png  "ReplicaSet")
 
