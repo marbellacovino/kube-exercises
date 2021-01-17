@@ -11,6 +11,39 @@
 
 **1. Exponiendo el servicio hacia el exterior (crea service1.yaml) LoadBalancer or Ingress Controller**
 
+Para esto debemos crear un servicio de tipo Ingress
+
+Configuramos nuestro yaml como se muestra a continuación:
+
+**service1.yaml**
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /testpath
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx
+            port:
+              number: 80
+```
+```sh
+
+$ kubectl create -f answer_exercise_3/service1.yaml  
+
+$ kubectl get ingress
+
+```
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/services1.0.png  "Ingress")
+
 **2. De forma interna, sin acceso desde el exterior (crea service2.yaml)**
 
 Para esto debemos crear un servicio de tipo ClusterIP
@@ -50,7 +83,7 @@ $ kubectl describe service nginx-server
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/services2.1.png  "ClusterIP Service")
 
-Para verificar que mi servicio funciona correctamente, podemos hacer un curl localhost:80 dentro del pod 
+Para verificar que mi servicio funciona correctamente, podemos hacer un curl localhost:80 dentro del cluster
 
 ```sh
 
