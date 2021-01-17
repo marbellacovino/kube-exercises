@@ -9,9 +9,9 @@
 
 ## Desarrollo
 
-# • Exponiendo el servicio hacia el exterior (crea service1.yaml) LoadBalancer or Ingress Controller
+**• Exponiendo el servicio hacia el exterior (crea service1.yaml) LoadBalancer or Ingress Controller**
 
-# • De forma interna, sin acceso desde el exterior (crea service2.yaml) 
+**• De forma interna, sin acceso desde el exterior (crea service2.yaml)**
 
 Para esto debemos crear un servicio de tipo ClusterIP
 
@@ -24,7 +24,7 @@ $ kubectl get services
 
 ```
 
-# • Abriendo un puerto especifico de la VM (crea service3.yaml)
+**• Abriendo un puerto especifico de la VM (crea service3.yaml)**
 
 Para esto debemos crear un servicio de tipo NodePort
 
