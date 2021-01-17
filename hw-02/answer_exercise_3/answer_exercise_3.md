@@ -42,7 +42,7 @@ $ kubectl get ingress
 
 ```
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/services1.0.png  "Ingress")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/service1.0.png  "Ingress")
 
 **2. De forma interna, sin acceso desde el exterior (crea service2.yaml)**
 
