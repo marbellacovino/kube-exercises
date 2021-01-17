@@ -102,7 +102,7 @@ $ kubectl get pods
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.1.png  "Running Pod")
 
-Una vez mi pod esta corriendo podemos responder las siguientes preguntas:
+## Una vez mi pod esta corriendo podemos responder las siguientes preguntas:
 
 **• ¿Cómo puedo obtener las últimas 10 líneas de la salida estándar (logs generados por la aplicación)?**
 ```sh
@@ -169,6 +169,6 @@ $ kubectl describe pod nginx-server-v1
 ```
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube1.7.png  "Pod QoS")
 
-Podemos ver que el QoS Class esta Guaranteed, esto ocurre por como hemos configurado el pod.yaml, en donde el pod debe tener un límite (limits) de memoria y una solicitud (requests) de memoria iguales y un límite (limits) de CPU y una solicitud (requests) de CPU iguales, es decir:
+Podemos ver que el QoS Class esta Guaranteed, esto ocurre por como hemos configurado el pod.yaml, en donde el pod debe tiene un límite (limits) de memoria y una solicitud (requests) de memoria iguales y un límite (limits) de CPU y una solicitud (requests) de CPU iguales, es decir:
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/kube.1.11.png  "pod resources yaml")
