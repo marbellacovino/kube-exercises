@@ -123,10 +123,45 @@ $  kubectl describe pod nginx-deployment-645d4c6787-pwdhd
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/rolloutDeployment1.1.png  "rolloutDeployment")
 
 
+
+
+### Realiza un rollback a la versión generada previamente
+
+Para hacer un rollback debemos saber a que versión queremos volver, para esto corremos el siguiente comando:
+
 ```sh
 
 $  kubectl rollout history deployment nginx-deployment
 
 ```
+En el history deployment podemos ver que la versión anterior es la 1 (REVISION=1)
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/rolloutDeployment1.3.png  "rolloutDeployment")
+
+Primero ejecutamos el siguiente comando para visualizar los cambios que vamos a realizar...
+
+```sh
+
+$ kubectl get pods --watch
+
+```
+Ahora para volver a esa versión debemos correr el siguiente comando en un terminal diferente, indicando en **--to-revision** la versión anterior...
+
+```sh
+
+$  kubectl rollout undo deployment nginx-deployment --to-revision=1
+
+```
+Como podemos ver en la siguiente imagen, al realizar un rollback se elimina el pod viejo y se genera uno nuevo llamado _nginx-deployment-5cfbbf5d48-6cthw_
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/rollbackDeployment1.0.png  "rolloutDeployment")
+
+Si ahora revisamos la version con la que este pod fue generado, vemos que el imagen utilizada es la versión anterior nginx:1.19.4
+
+```sh
+
+$  kubectl describe pod nginx-deployment-5cfbbf5d48-6cthw
+
+```
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/rollbackDeployment1.2.png  "rolloutDeployment")
+
