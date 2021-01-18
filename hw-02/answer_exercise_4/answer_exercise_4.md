@@ -1,5 +1,5 @@
-# Kubernetes - Rollout & Rollback
-## Crear un objeto de tipo deployment con las especificaciones del [ejercicio 1] (https://github.com/marbellacovino/kube-exercises/tree/main/hw-02/answer_exercise_1).
+# Kubernetes - Deployment Strategies
+## Crear un objeto de tipo deployment con las especificaciones del [ejercicio 1](https://github.com/marbellacovino/kube-exercises/tree/main/hw-02/answer_exercise_1).
 
 1. Despliega una nueva versión de tu nuevo servicio mediante la técnica “recreate”
 
