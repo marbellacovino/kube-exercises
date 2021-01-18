@@ -114,4 +114,19 @@ $ kubectl get pods --watch
 ```
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/rolloutDeployment1.0.png  "rolloutDeployment")
 
+```sh
 
+$  kubectl describe pod nginx-deployment-645d4c6787-pwdhd
+
+```
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/rolloutDeployment1.1.png  "rolloutDeployment")
+
+
+```sh
+
+$  kubectl rollout history deployment nginx-deployment
+
+```
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/rolloutDeployment1.3.png  "rolloutDeployment")
