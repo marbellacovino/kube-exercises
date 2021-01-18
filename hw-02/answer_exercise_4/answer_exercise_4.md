@@ -52,7 +52,7 @@ $ kubectl create -f answer_exercise_4/deployment.yaml --record
 ```
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/deployment.png  "Deployment")
 
-## Despliegue mediante recreación:
+### Despliegue mediante recreación:
 
 Todos los pods actuales se eliminan antes de que los nuevos se creen cuando .spec.strategy.type==Recreate.
 
@@ -96,7 +96,7 @@ $ kubectl edit deployment nginx-deployment
 
 ```
 
-## Despliega una nueva versión haciendo “rollout deployment”
+### Despliega una nueva versión haciendo “rollout deployment”
 
 
 
