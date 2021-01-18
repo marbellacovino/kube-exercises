@@ -9,9 +9,6 @@
 
 ## Desarrollo
 
-Despliegue mediante recreación
-Todos los Pods actuales se eliminan antes de que los nuevos se creen cuando .spec.strategy.type==Recreate.
-
 Configuramos nuestro yaml como se muestra a continuación:
 
 **deployment.yaml**
@@ -56,6 +53,9 @@ $ kubectl create -f answer_exercise_4/deployment.yaml --record
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/deployment.png  "Deployment")
 
 **1. Despliega una nueva versión de tu nuevo servicio mediante la técnica “recreate”**
+
+**Despliegue mediante recreación:**
+Todos los Pods actuales se eliminan antes de que los nuevos se creen cuando .spec.strategy.type==Recreate.
 
 Para desplegar nuestro deployment con la estrategia _Recreate_, debemos editar nuestro deployment.yaml con la siguiente caracteristíca:
 
