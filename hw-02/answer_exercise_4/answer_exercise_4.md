@@ -1,11 +1,11 @@
 # Kubernetes - Deployment Strategies
 ## Crear un objeto de tipo deployment con las especificaciones del [ejercicio 1](https://github.com/marbellacovino/kube-exercises/tree/main/hw-02/answer_exercise_1).
 
-1. Despliega una nueva versión de tu nuevo servicio mediante la técnica “recreate”
+• Despliega una nueva versión de tu nuevo servicio mediante la técnica “recreate”
 
-2. Despliega una nueva versión haciendo “rollout deployment”
+• Despliega una nueva versión haciendo “rollout deployment”
 
-3. Realiza un rollback a la versión generada previamente
+• Realiza un rollback a la versión generada previamente
 
 ## Desarrollo
 
@@ -52,7 +52,7 @@ $ kubectl create -f answer_exercise_4/deployment.yaml --record
 ```
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/deployment.png  "Deployment")
 
-**1. Despliegue mediante recreación:**
+## Despliegue mediante recreación:
 
 Todos los pods actuales se eliminan antes de que los nuevos se creen cuando .spec.strategy.type==Recreate.
 
@@ -66,7 +66,7 @@ spec:
 
 Esto podemos hacerlo de dos maneras:
 
-• Hacer un patch para actualizar el deployment.yaml usando la estrategia de retainKeys
+**2.**  Hacer un patch para actualizar el deployment.yaml usando la estrategia de retainKeys
 
 ```sh
 
@@ -88,7 +88,7 @@ $ kubectl describe deployment nginx-deployment
 
 Observamos que el StrategyType ha sido modificado a Recreate
 
-• Editando el deployment.yaml directamente:
+**2.** Editando el deployment.yaml directamente:
 
 ```sh
 
@@ -96,7 +96,7 @@ $ kubectl edit deployment nginx-deployment
 
 ```
 
-**2. Despliega una nueva versión haciendo “rollout deployment”**
+## Despliega una nueva versión haciendo “rollout deployment”
 
 
 
