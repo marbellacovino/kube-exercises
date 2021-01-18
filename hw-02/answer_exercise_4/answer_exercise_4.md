@@ -53,7 +53,8 @@ $ kubectl create -f answer_exercise_4/deployment.yaml --record
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/deployment.png  "Deployment")
 
 **1. Despliegue mediante recreación:**
-Todos los Pods actuales se eliminan antes de que los nuevos se creen cuando .spec.strategy.type==Recreate.
+
+Todos los pods actuales se eliminan antes de que los nuevos se creen cuando .spec.strategy.type==Recreate.
 
 Para desplegar nuestro deployment con la estrategia _Recreate_, debemos editar nuestro deployment.yaml con la siguiente caracteristíca:
 
