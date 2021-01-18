@@ -165,3 +165,7 @@ $  kubectl describe pod nginx-deployment-5cfbbf5d48-6cthw
 ```
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/rollbackDeployment1.2.png  "rolloutDeployment")
 
+Podemos tambien revisar el rollout history para revisar la versión actual
+
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/rollbackDeployment1.3.png  "rolloutDeployment")
