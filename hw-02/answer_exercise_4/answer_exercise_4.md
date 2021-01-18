@@ -73,7 +73,7 @@ $ kubectl patch deployment nginx-deployment -p '{"spec":{"strategy":{"$retainKey
 
 ```
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/deployment1.0.png  "DeploymentRecreatePatch")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/deploymentRecreate1.0.png  "DeploymentRecreatePatch")
 
 Ahora para asegurarnos que el patch fue realizado podemos verificar el contenido del deployment.yaml con el siguiente comando:
 
@@ -83,7 +83,7 @@ $ kubectl describe deployment nginx-deployment
 
 ```
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/deployment1.1.png  "DeploymentRecreatePatch")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/deploymentRecreate1.1.png  "DeploymentRecreatePatch")
 
 Observamos que el StrategyType ha sido modificado a Recreate
 
