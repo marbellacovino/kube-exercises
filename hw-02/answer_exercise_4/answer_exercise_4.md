@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - image: nginx:1.19.4
-        name: nginx-v1
+        name: nginx
         resources:
           requests:
             memory: "256Mi"
@@ -70,7 +70,7 @@ Esto podemos hacerlo de dos maneras:
 
 ```sh
 
-$ kubectl patch deployment nginx-deployment -p '{"spec":{"strategy":{"$retainKeys":["type"] ,"type":"Recreate"}}}'
+$ kubectl patch deployment nginx-deployment -p '{"spec":{"strategy":{"$retainKeys":["type"] ,"type":"Recreate"}}}' --record
 
 ```
 
@@ -98,6 +98,20 @@ $ kubectl edit deployment nginx-deployment
 
 ### Despliega una nueva versión haciendo “rollout deployment”
 
+En un terminal...
 
+```sh
+
+$ kubectl set image deployment nginx-deployment nginx=nginx:1.19.5 --record
+
+```
+Y en otro ejecutar..
+
+```sh
+
+$ kubectl get pods --watch
+
+```
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/rolloutDeployment1.0.png  "rolloutDeployment")
 
 

@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - image: nginx:1.19.4
-        name: nginx-v1
+        name: nginx
         resources:
           requests:
             memory: "256Mi"
