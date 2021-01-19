@@ -224,7 +224,7 @@ $ kubectl describe pod
 
 ```
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.3.png  "Recreate1.4")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.4.png  "Recreate1.4")
 
 
 
