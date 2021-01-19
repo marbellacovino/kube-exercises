@@ -147,7 +147,7 @@ $ kubectl get pods
 ```
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.0.png  "Recreate1.0")
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.0.png  "Recreate1.0.0")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.0.0.png  "Recreate1.0.0")
 
 Revisamos la version actual de nuestro servicio con el siguiente comando:
 
