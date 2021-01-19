@@ -216,14 +216,13 @@ $ kubectl set image deployment nginx-recreate nginx=marbellacovino/nginx:2.0 --r
 
 ```
 
-Si ahora reviso la versión de la imagen que mi pod utiliza con un _describe pod_
+Si ahora reviso la versión de la imagen que mi pod utiliza con un _describe pod_, vemos ahora los pods utilizan la nginx:2.0
 
 ```sh
 
 $ kubectl describe pod 
 
 ```
-En la seccion de eventos ahora vemos que utiliza la nginx:2.0
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.3.png  "Recreate1.4")
 
@@ -233,6 +232,8 @@ En la seccion de eventos ahora vemos que utiliza la nginx:2.0
 
 
 ### Despliega una nueva versión haciendo “rollout deployment”
+
+Editamos nuestro .yaml con la siguiente caracteristíca:
 
 ```yaml
 spec:
