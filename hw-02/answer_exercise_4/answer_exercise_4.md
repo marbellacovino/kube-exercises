@@ -128,7 +128,7 @@ spec:
 
 Todos los pods actuales se eliminan antes de que los nuevos se creen cuando .spec.strategy.type==Recreate.
 
-Para desplegar una versión de nuestro servicio con la estrategia _Recreate_, debemos editar nuestro deployment.yaml con la siguiente caracteristíca:
+Para desplegar una versión de nuestro servicio con la estrategia _Recreate_, debemos editar nuestro .yaml con la siguiente caracteristíca:
 
 ```yaml
 spec:
@@ -136,7 +136,44 @@ spec:
   strategy:
     type: Recreate
 ```
+Nuestro archivo .yaml se vera de la siguiente manera:
 
+**app-recreate.yaml**
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-ramped
+  labels:
+    app: nginx-server
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2  
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: nginx-server
+  template:
+    metadata:
+      labels: 
+        app: nginx-server
+    spec:
+      containers:
+      - image: marbellacovino/nginx:1.0
+        name: nginx
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "100m"
+        ports:
+          - containerPort: 80
+```
 Desde el directorio answer_exercise_4 creamos nuestro deployment con el siguiente comando:
 
 ```sh
@@ -187,7 +224,7 @@ $ kubectl describe pod
 
 ```
 En la seccion de eventos ahora vemos que utiliza la nginx:2.0
- 
+
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.3.png  "Recreate1.4")
 
 
