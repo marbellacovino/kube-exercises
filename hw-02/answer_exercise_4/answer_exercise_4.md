@@ -151,13 +151,22 @@ $ kubectl get pods
 
 Revisamos la version actual de nuestro servicio con el siguiente comando:
 
- kubectl port-forward pod/nginx-recreate-86779df7c7-cmwxb 8080:80
+```sh
+
+$  kubectl port-forward pod/nginx-recreate-86779df7c7-7jcfs 8081:80
+
+```
+Abrimos nuestro navegador en el puerto 8081 para visualizar el contenido de pod...
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.2.png  "Recreate1.2")
+
+
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.1.png  "Recreate1.1")
 
 Podemos ver que la version actual es la nginx:1.19.4 (nuestra versión 1.0 en el DockerHub)
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.2.png  "Recreate1.2")
+
 
 Ahora Despliego una nueva versión de mi servicio...
 ```sh
