@@ -4,21 +4,21 @@ metadata:
   name: nginx-deployment
   labels:
     app: nginx-server
+    version: green
 spec:
-  replicas: 3
-  strategy:
-    type: Recreate
+  replicas: 2
   selector:
     matchLabels:
       app: nginx-server
+      version: green
   template:
     metadata:
       labels: 
         app: nginx-server
     spec:
       containers:
-      - image: marbellacovino/nginx:1.0
-        name: nginx
+      - image: nginx:1.19.5
+        name: nginx-green
         resources:
           requests:
             memory: "256Mi"

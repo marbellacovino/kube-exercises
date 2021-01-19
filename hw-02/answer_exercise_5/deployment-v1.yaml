@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: nginx
   labels:
-    app: nginx-server
+    app: nginx-deployment
 spec:
-  replicas: 3
-  strategy:
-    type: Recreate
+  replicas: 2
   selector:
     matchLabels:
-      app: nginx-server
+      app: nginx-blue
+      version: blue
   template:
     metadata:
       labels: 
-        app: nginx-server
+        app: nginx-blue
+        version: blue
     spec:
       containers:
-      - image: marbellacovino/nginx:1.0
-        name: nginx
+      - image: nginx:1.19.4
+        name: nginx-blue
         resources:
           requests:
             memory: "256Mi"

@@ -7,9 +7,89 @@
 
 • Realiza un rollback a la versión generada previamente
 
+
+#### NEW
+From dockerHub directory ...
+
+Crear una custom imagen de nginx:1.19.4 a partir de un Dockerfile y subirla al dockerHub como mi version 1.0 indicando en el tag v1
+
+Primero creamos nuestro index.html personalizado que va a sustituir el index.html de la imagen base de nginx.
+
+**index.html**
+
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Docker Nginx</title>
+</head>
+<body>
+  <h2>Hello from Nginx nginx:1.19.4</h2>
+</body>
+</html>
+```
+
+Ahora creamos nuestro Dockerfile con las siguientes instrucciones:
+
+**Dockerfile**
+
+```
+FROM nginx:1.19.4
+# Copia nuestro custom index.html al directorio que contiene el html de la imagen nginx 
+COPY index.html /usr/share/nginx/html/index.html
+```
+
+Finalmente podemos construir nuestra custom image y subirla al DockerHub con los siguientes comandos:
+
+```
+$ docker login
+
+$ docker build -t marbellacovino/nginx:1.0 .   
+
+$ docker push marbellacovino/nginx:1.0 
+```
+
+Ahora creo otra version de nginx a partir del mismo Dockerfile, para esto edito el Dockerfile con la imagen nginx:1.19.5 :
+
+```
+FROM nginx:1.19.5
+# Copy index into the directory inside the container
+COPY index.html /usr/share/nginx/html/index.html
+```
+
+Edito tambien el index.html...
+
+**index.html**
+
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Docker Nginx</title>
+</head>
+<body>
+  <h2>Hello from Nginx nginx:1.19.5</h2>
+</body>
+</html>
+```
+
+Y repito los pasos anteriores, indicando en el tag mi nueva version:
+
+```
+$ docker login
+
+$ docker build -t marbellacovino/nginx:2.0 .   
+
+$ docker push marbellacovino/nginx:2.0 
+```
+
+#### NEW
+
 ## Desarrollo
 
-Configuramos nuestro yaml como se muestra a continuación:
+Creamos nuestro objeto de tipo deployment, para esto configuramos nuestro deployment.yaml como se muestra a continuación:
 
 **deployment.yaml**
 
@@ -21,16 +101,17 @@ metadata:
   labels:
     app: nginx-server
 spec:
+  replicas: 3
   selector:
     matchLabels:
-      app: nginx-server 
+      app: nginx-server
   template:
     metadata:
       labels: 
         app: nginx-server
     spec:
       containers:
-      - image: nginx:1.19.4
+      - image: marbellacovino/nginx:1.0
         name: nginx
         resources:
           requests:
@@ -41,20 +122,16 @@ spec:
             cpu: "100m"
         ports:
           - containerPort: 80
-```
-
-Y creamos nuestro deployment con el siguiente comando:
-
-```sh
-
-$ kubectl create -f answer_exercise_4/deployment.yaml --record
 
 ```
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/deployment.png  "Deployment")
 
 ### Despliegue mediante recreación:
 
 Todos los pods actuales se eliminan antes de que los nuevos se creen cuando .spec.strategy.type==Recreate.
+
+Esto podemos hacerlo de dos maneras:
+
+**1.** Editando el deployment.yaml directamente:
 
 Para desplegar nuestro deployment con la estrategia _Recreate_, debemos editar nuestro deployment.yaml con la siguiente caracteristíca:
 
@@ -63,8 +140,50 @@ spec:
   strategy:
     type: Recreate
 ```
+Desde el directorio answer_exercise_4 creamos nuestro deployment con el siguiente comando:
 
-Esto podemos hacerlo de dos maneras:
+```sh
+
+$ kubectl create -f deployment.yaml --record
+
+```
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.0.png  "Recreate1.0")
+
+
+Reviso la version de mi pod con el siguiente comando:
+
+```sh
+
+$ kubectl describe pod 
+
+```
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.2.png  "Recreate1.2")
+
+```sh
+
+Despliego una nueva versión de mi servicio...
+
+$ kubectl set image deployment nginx-deployment nginx=marbellacovino/nginx:2.0 --record
+
+```
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.1.png  "Recreate1.1")
+
+Si ahora reviso la versión de la imagen que mi pod utiliza, puedo ver que mis pods estan corriendo la nueva imagen de mi servicio...
+
+```sh
+
+$ kubectl describe pod 
+
+```
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.3.png  "Recreate1.3")
+
+
+
+
+
+
 
 **2.**  Hacer un patch para actualizar el deployment.yaml usando la estrategia de retainKeys
 
@@ -88,13 +207,6 @@ $ kubectl describe deployment nginx-deployment
 
 Observamos que el StrategyType ha sido modificado a Recreate
 
-**2.** Editando el deployment.yaml directamente:
-
-```sh
-
-$ kubectl edit deployment nginx-deployment
-
-```
 
 ### Despliega una nueva versión haciendo “rollout deployment”
 
@@ -165,7 +277,7 @@ $  kubectl describe pod nginx-deployment-5cfbbf5d48-6cthw
 ```
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/rollbackDeployment1.2.png  "rolloutDeployment")
 
-Podemos tambien revisar el rollout history para revisar la versión actual
+Podemos tambien revisar el rollout history para revisar la versión actual que esta utilizando el deployment
 
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/rollbackDeployment1.3.png  "rolloutDeployment")
