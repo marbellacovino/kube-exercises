@@ -156,15 +156,24 @@ Revisamos la version actual de nuestro servicio con el siguiente comando:
 $  kubectl port-forward pod/nginx-recreate-86779df7c7-7jcfs 8081:80
 
 ```
-Abrimos nuestro navegador en el puerto 8081 para visualizar el contenido de pod...
+Abrimos nuestro navegador en el puerto 8081 para visualizar el contenido de pod. Podemos ver que la version actual es la nginx:1.19.4 (nuestra versión 1.0 en el DockerHub)
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.2.png  "Recreate1.2")
 
+Si ahora reviso la versión de la imagen que mi pod utiliza con el siguiente comando:
 
+```sh
+
+$ kubectl describe pod 
+
+```
+En la seccion de eventos vemos que utiliza la nginx:1.0 
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.3.png  "Recreate1.3")
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.1.png  "Recreate1.1")
 
-Podemos ver que la version actual es la nginx:1.19.4 (nuestra versión 1.0 en el DockerHub)
+
 
 
 
@@ -176,15 +185,7 @@ $ kubectl set image deployment nginx-deployment nginx=marbellacovino/nginx:2.0 -
 ```
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.1.png  "Recreate1.1")
 
-Si ahora reviso la versión de la imagen que mi pod utiliza, puedo ver que mis pods estan corriendo la nueva imagen de mi servicio...
 
-```sh
-
-$ kubectl describe pod 
-
-```
-
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.3.png  "Recreate1.3")
 
 
 
