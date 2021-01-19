@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-recreate
+  labels:
+    app: nginx-server
+spec:
+  replicas: 3
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: nginx-server
+  template:
+    metadata:
+      labels: 
+        app: nginx-server
+    spec:
+      containers:
+      - image: marbellacovino/nginx:1.0
+        name: nginx
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "100m"
+        ports:
+          - containerPort: 80

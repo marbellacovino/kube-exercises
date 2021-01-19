@@ -101,7 +101,6 @@ metadata:
   labels:
     app: nginx-server
 spec:
-  replicas: 3
   selector:
     matchLabels:
       app: nginx-server
@@ -129,40 +128,39 @@ spec:
 
 Todos los pods actuales se eliminan antes de que los nuevos se creen cuando .spec.strategy.type==Recreate.
 
-Esto podemos hacerlo de dos maneras:
-
-**1.** Editando el deployment.yaml directamente:
-
-Para desplegar nuestro deployment con la estrategia _Recreate_, debemos editar nuestro deployment.yaml con la siguiente caracteristíca:
+Para desplegar una versión de nuestro servicio con la estrategia _Recreate_, debemos editar nuestro deployment.yaml con la siguiente caracteristíca:
 
 ```yaml
 spec:
+  replicas: 3
   strategy:
     type: Recreate
 ```
+
 Desde el directorio answer_exercise_4 creamos nuestro deployment con el siguiente comando:
 
 ```sh
 
-$ kubectl create -f deployment.yaml --record
+$ kubectl create -f app-recreate.yaml
+$ kubectl get pods
 
 ```
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.0.png  "Recreate1.0")
 
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.0.png  "Recreate1.0.0")
 
-Reviso la version de mi pod con el siguiente comando:
+Revisamos la version actual de nuestro servicio con el siguiente comando:
 
-```sh
+ kubectl port-forward pod/nginx-recreate-86779df7c7-cmwxb 8080:80
 
-$ kubectl describe pod 
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.1.png  "Recreate1.1")
 
-```
+Podemos ver que la version actual es la nginx:1.19.4 (nuestra versión 1.0 en el DockerHub)
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.2.png  "Recreate1.2")
 
+Ahora Despliego una nueva versión de mi servicio...
 ```sh
-
-Despliego una nueva versión de mi servicio...
 
 $ kubectl set image deployment nginx-deployment nginx=marbellacovino/nginx:2.0 --record
 
@@ -182,102 +180,41 @@ $ kubectl describe pod
 
 
 
-
-
-
-**2.**  Hacer un patch para actualizar el deployment.yaml usando la estrategia de retainKeys
-
-```sh
-
-$ kubectl patch deployment nginx-deployment -p '{"spec":{"strategy":{"$retainKeys":["type"] ,"type":"Recreate"}}}' --record
-
-```
-
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/deploymentRecreate1.0.png  "DeploymentRecreatePatch")
-
-Ahora para asegurarnos que el patch fue realizado podemos verificar el contenido del deployment.yaml con el siguiente comando:
-
-```sh
-
-$ kubectl describe deployment nginx-deployment 
-
-```
-
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/deploymentRecreate1.1.png  "DeploymentRecreatePatch")
-
-Observamos que el StrategyType ha sido modificado a Recreate
-
-
 ### Despliega una nueva versión haciendo “rollout deployment”
 
-En un terminal...
+```yaml
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2  
+      maxUnavailable: 0
+```
+
+Desde el directorio answer_exercise_4 creamos nuestro deployment con el siguiente comando:
 
 ```sh
 
-$ kubectl set image deployment nginx-deployment nginx=nginx:1.19.5 --record
+$ kubectl create -f app-ramped.yaml
+$ kubectl get pods
 
 ```
-Y en otro ejecutar..
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/ramped11.0.png  "Ramped1.0")
 
+Revisamos la version actual de nuestro servicio con el siguiente comando:
+
+ kubectl port-forward pod/nginx-ramped-86779df7c7-cmwxb 8080:80
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/ramped11.1.png  "Ramped1.1")
+
+Podemos ver que la version actual es la nginx:1.19.4 (nuestra versión 1.0 en el DockerHub)
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/ramped1.2.png  "Ramped1.2")
+
+Ahora Despliego una nueva versión de mi servicio...
 ```sh
 
-$ kubectl get pods --watch
+$ kubectl set image deployment nginx-ramped nginx=marbellacovino/nginx:2.0 --record
 
 ```
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/rolloutDeployment1.0.png  "rolloutDeployment")
-
-```sh
-
-$  kubectl describe pod nginx-deployment-645d4c6787-pwdhd
-
-```
-
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/rolloutDeployment1.1.png  "rolloutDeployment")
-
-
-
-
-### Realiza un rollback a la versión generada previamente
-
-Para hacer un rollback debemos saber a que versión queremos volver, para esto corremos el siguiente comando:
-
-```sh
-
-$  kubectl rollout history deployment nginx-deployment
-
-```
-En el history deployment podemos ver que la versión anterior es la 1 (REVISION=1)
-
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/rolloutDeployment1.3.png  "rolloutDeployment")
-
-Primero ejecutamos el siguiente comando para visualizar los cambios que vamos a realizar...
-
-```sh
-
-$ kubectl get pods --watch
-
-```
-Ahora para volver a esa versión debemos correr el siguiente comando en un terminal diferente, indicando en **--to-revision** la versión anterior...
-
-```sh
-
-$  kubectl rollout undo deployment nginx-deployment --to-revision=1
-
-```
-Como podemos ver en la siguiente imagen, al realizar un rollback se elimina el pod viejo y se genera uno nuevo llamado _nginx-deployment-5cfbbf5d48-6cthw_
-
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/rollbackDeployment1.0.png  "rolloutDeployment")
-
-Si ahora revisamos la version con la que este pod fue generado, vemos que el imagen utilizada es la versión anterior nginx:1.19.4
-
-```sh
-
-$  kubectl describe pod nginx-deployment-5cfbbf5d48-6cthw
-
-```
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/rollbackDeployment1.2.png  "rolloutDeployment")
-
-Podemos tambien revisar el rollout history para revisar la versión actual que esta utilizando el deployment
-
-
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/rollbackDeployment1.3.png  "rolloutDeployment")
