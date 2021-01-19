@@ -160,7 +160,7 @@ Abrimos nuestro navegador en el puerto 8081 para visualizar el contenido de pod.
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.2.png  "Recreate1.2")
 
-Si ahora reviso la versión de la imagen que mi pod utiliza con el siguiente comando:
+Chequeo la versión de la imagen que mi pod utiliza con el siguiente comando:
 
 ```sh
 
@@ -171,19 +171,24 @@ En la seccion de eventos vemos que utiliza la nginx:1.0
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.3.png  "Recreate1.3")
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.1.png  "Recreate1.1")
+Ahora despliego la versión 2.0 de mi servicio con el siguiente comando:
 
-
-
-
-
-Ahora Despliego una nueva versión de mi servicio...
 ```sh
 
-$ kubectl set image deployment nginx-deployment nginx=marbellacovino/nginx:2.0 --record
+$ kubectl set image deployment nginx-recreate nginx=marbellacovino/nginx:2.0 --record
 
 ```
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.1.png  "Recreate1.1")
+
+Si ahora reviso la versión de la imagen que mi pod utiliza con un _describe pod_
+
+```sh
+
+$ kubectl describe pod 
+
+```
+En la seccion de eventos ahora vemos que utiliza la nginx:2.0
+ 
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.3.png  "Recreate1.4")
 
 
 
