@@ -13,7 +13,7 @@
 
 Para esto debemos crear un servicio de tipo LoadBalancer
 
-Configuramos nuestro yaml como se muestra a continuación:
+Configuramos nuestro service1.yaml como se muestra a continuación:
 
 **service1.yaml**
 
@@ -109,7 +109,7 @@ $  minikube service nginx-lb
 
 Para esto debemos crear un servicio de tipo ClusterIP
 
-Configuramos nuestro yaml como se muestra a continuación:
+Configuramos nuestro service2.yaml como se muestra a continuación:
 
 **service2.yaml**
 
@@ -172,7 +172,7 @@ $ curl 10.68.1.81:80
 
 Para esto debemos crear un servicio de tipo NodePort
 
-Configuramos nuestro yaml como se muestra a continuación:
+Configuramos nuestro service3.yaml como se muestra a continuación:
 
 **service3.yaml**
 
