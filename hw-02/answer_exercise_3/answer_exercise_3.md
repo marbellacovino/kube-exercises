@@ -76,7 +76,7 @@ Para ver la configuracion del servicio ejecuto el siguiente comando:
 $ kubectl describe service nginx
 
 ```
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/service1.1.0png  "Load Balancer Service")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/service1.1.0.png  "Load Balancer Service")
 
 Una vez asignada la <external-ip>  a mi servicio nginx-lb, accedo al contenido de Nginx con el siguiente comando:
 
