@@ -11,7 +11,7 @@
 
 **1. Exponiendo el servicio hacia el exterior (crea service1.yaml) LoadBalancer or Ingress Controller**
 
-Para esto debemos crear un servicio de tipo Ingress
+Para esto debemos crear un servicio de tipo LoadBalancer
 
 Configuramos nuestro yaml como se muestra a continuación:
 
@@ -37,16 +37,25 @@ Primero debemos iniciar googleCloud y conectarnos a nuestro cluster, esto lo hac
 ```sh
 $ gcloud init
 
-$ $ gcloud container clusters get-credentials cluster-1 --zone europe-west3-b --project kubernetes-hw02
+$ gcloud container clusters get-credentials cluster-1 --zone europe-west3-b --project kubernetes-hw02
 
 ```
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/gcloud1.0.png  "Load Balancer Service")
+
+Ahora vamos a listar todos los componentes de mi cluster con el siguiente comando:
 
 ```sh
 
 $ kubectl get all 
 
 ```
+Como podemos ver el cluster todavia no tiene pods, servicios o deployments...
+
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/service1.0.png  "Load Balancer Service")
+
+Ahora que estamos en nuestro cluster en la nube vamos a crear el replicaSet a partir del replicaset.yaml del apartado anterior y el servicio load balancer (service1.yaml) previamente configurado.
+
+Desde la línea de comandos de kubectl ejecutamos:
 
 ```sh
 
