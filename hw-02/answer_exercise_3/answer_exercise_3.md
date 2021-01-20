@@ -42,7 +42,7 @@ $ gcloud container clusters get-credentials cluster-1 --zone europe-west3-b --pr
 ```
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/gcloud1.0.png  "Load Balancer Service")
 
-Ahora vamos a listar todos los componentes de mi cluster con el siguiente comando:
+Ahora vamos a listar todos los componentes de mi  gcloud cluster con el siguiente comando:
 
 ```sh
 
@@ -69,15 +69,17 @@ $ kubectl get services
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/service1.1.png  "Load Balancer Service")
 
-Ahora u tilizo la dirección IP externa (LoadBalancer Ingress) para acceder a la aplicación Nginx:
+Una vez asignada la <external-ip>  a mi servicio nginx-lb, accedo al contenido de Nginx con el siguiente comando:
 
 ```sh
 
 # curl http://<external-ip>:<port>
+# donde <external-ip> es la dirección IP externa (LoadBalancer Ingress) de nginx-lb, y <port> es el valor de Port en la descripción del servicio nginx-lb.
+
 $  curl 34.89.129.36:80
 
 ```
-donde <external-ip> es la dirección IP externa (LoadBalancer Ingress) de nginx-lb, y <port> es el valor de Port en la descripción del servicio nginx-lb.
+
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/service1.2.png  "Load Balancer Service")
 
