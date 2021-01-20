@@ -1,15 +1,11 @@
 apiVersion: networking.k8s.io/v1
-kind: Ingress
+kind: LoadBalancer
 metadata:
-  name: nginx-ingress
+  name: nginx-lb
 spec:
-  rules:
-  - http:
-      paths:
-      - path: /testpath
-        pathType: Prefix
-        backend:
-          service:
-            name: nginx
-            port:
-              number: 80
+  selector:
+    app: nginx-server
+  ports:
+    - port: 8765
+      targetPort: 80
+  type: LoadBalancer

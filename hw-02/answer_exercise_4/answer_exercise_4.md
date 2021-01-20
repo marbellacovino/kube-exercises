@@ -227,7 +227,7 @@ $ kubectl describe pod
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.4.png  "Recreate1.4")
 
 
-
+VIDEOOO
 
 
 
@@ -257,9 +257,14 @@ $ kubectl get pods
 
 Revisamos la version actual de nuestro servicio con el siguiente comando:
 
- kubectl port-forward pod/nginx-ramped-86779df7c7-cmwxb 8080:80
+```sh
+ kubectl port-forward pod/nginx-ramped-86779df7c7-cmwxb 8083:80
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/ramped11.1.png  "Ramped1.1")
+ ```
+
+ Abrimos nuestro navegador en el puerto 8083 para visualizar el contenido de pod. Podemos ver que la version actual es la nginx:1.19.4 (nuestra versión 1.0 en el DockerHub)
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/ramped1.1.png  "Ramped1.1")
 
 Podemos ver que la version actual es la nginx:1.19.4 (nuestra versión 1.0 en el DockerHub)
 

@@ -19,30 +19,26 @@ Configuramos nuestro yaml como se muestra a continuación:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
-kind: Ingress
+kind: LoadBalancer
 metadata:
-  name: nginx-ingress
+  name: nginx-lb
 spec:
-  rules:
-  - http:
-      paths:
-      - path: /testpath
-        pathType: Prefix
-        backend:
-          service:
-            name: nginx
-            port:
-              number: 80
+  selector:
+    app: nginx-server
+  ports:
+    - port: 8765
+      targetPort: 80
+  type: LoadBalancer
 ```
 ```sh
 
 $ kubectl create -f answer_exercise_3/service1.yaml  
 
-$ kubectl get ingress
+$ kubectl get services
 
 ```
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/service1.0.png  "Ingress")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/service1.0.png  "Load Balancer Service")
 
 **2. De forma interna, sin acceso desde el exterior (crea service2.yaml)**
 

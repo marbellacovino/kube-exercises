@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: nginx-blue
   labels:
     app: nginx-deployment
 spec:
@@ -17,7 +17,7 @@ spec:
         version: blue
     spec:
       containers:
-      - image: nginx:1.19.4
+      - image: marbellacovino/nginx:1.0
         name: nginx-blue
         resources:
           requests:
