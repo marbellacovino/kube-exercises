@@ -97,7 +97,7 @@ $ kubectl describe service nginx-bluegreensvc
 
 ```sh
 
-$ kminikube ip
+$ minikube ip
 
 $ curl 192.168.64.2:30934
 
