@@ -9,7 +9,7 @@
 
 ## Desarrollo
 
-Configuramos nuestro archivo .yaml con las siguientes especificaciones:
+Configuramos nuestro archivo replicaset.yaml con las siguientes especificaciones:
 
 **replicaset.yaml**
 ```yaml
