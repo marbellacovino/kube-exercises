@@ -83,7 +83,8 @@ Una vez asignada la <external-ip>  a mi servicio nginx-lb, accedo al contenido d
 ```sh
 
 # curl http://<external-ip>:<port>
-# donde <external-ip> es la dirección IP externa (LoadBalancer Ingress) de nginx-lb, y <port> es el valor de Port en la descripción del servicio nginx-lb.
+# donde <external-ip> es la dirección IP externa (LoadBalancer Ingress) de nginx-lb, y <port> es el valor de Port 
+# en la descripción del servicio nginx-lb.
 
 $  curl 34.89.129.36:80
 
