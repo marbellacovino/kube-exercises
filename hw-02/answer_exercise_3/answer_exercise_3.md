@@ -69,6 +69,15 @@ $ kubectl get services
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/service1.1.png  "Load Balancer Service")
 
+Para ver la configuracion del servicio ejecuto el siguiente comando:
+
+```sh
+
+$ kubectl describe service nginx
+
+```
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/service1.1.0png  "Load Balancer Service")
+
 Una vez asignada la <external-ip>  a mi servicio nginx-lb, accedo al contenido de Nginx con el siguiente comando:
 
 ```sh
@@ -131,6 +140,8 @@ $ kubectl get services
 ```
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/services2.0.png  "ClusterIP Service")
 
+Para ver la configuracion del servicio ejecuto el siguiente comando:
+
 ```sh
 
 $ kubectl describe service nginx
@@ -186,6 +197,8 @@ spec:
 
 En el service3.yaml se configuraron los puertos **port y targetPort**, en donde **port**: es el puerto de servicio abstraído, que puede ser cualquier puerto que utilicen otros pods para acceder al servicio y **targetPort**: es el puerto en el que el contenedor acepta tráfico, para el contenedor de nginx es el puerto 80.
 
+Ahora creamos el servicio nginx-np con el siguiente comando:
+
 ```sh
 
 $ kubectl create -f answer_exercise_3/service3.yaml  
@@ -195,6 +208,8 @@ $ kubectl get services
 ```
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/services3.1.png  "NodePort Service 1")
 
+Para ver la configuración del servicio ejecuto el siguiente comando:
+
 ```sh
 
 $ kubectl describe service nginx-np
@@ -203,11 +218,10 @@ $ kubectl describe service nginx-np
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/services3.2.png  "NodePort Service 2")
 
-Para verificar que mi servicio funciona correctamente:
-
-Hago un curl de mi servicio < MINIKUBE-IP >:< PORT >
+Finalmente hacemos un curl del servicio para verificar que funciona correctamente:
 
 ```sh
+# curl <MINIKUBE-IP>:<PORT>
 
 $ minikube ip
 
