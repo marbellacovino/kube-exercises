@@ -121,10 +121,13 @@ Configuramos nuestro yaml como se muestra a continuación:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-server-np
+  name: nginx-np
+  labels:
+    app: nginx-server
+    tier: backend
 spec:
   selector:
-    app: nginx-server
+    tier: backend
   type: NodePort
   ports:
     - protocol: TCP
@@ -146,7 +149,7 @@ $ kubectl get services
 
 ```sh
 
-$ kubectl describe service nginx-server
+$ kubectl describe service nginx-np
 
 ```
 
@@ -154,13 +157,13 @@ $ kubectl describe service nginx-server
 
 Para verificar que mi servicio funciona correctamente:
 
-Hago un curl de mi nginx NodePort Service < MINIKUBE-IP >:< PORT >
+Hago un curl de mi servicio < MINIKUBE-IP >:< PORT >
 
 ```sh
 
 $ minikube ip
 
-$ curl 192.168.64.2:32692
+$ curl 192.168.64.2:32763
 
 ```
 

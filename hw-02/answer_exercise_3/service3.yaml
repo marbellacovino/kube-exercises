@@ -1,13 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-server-np
+  name: nginx-np
+  labels:
+    app: nginx-server
+    tier: backend
 spec:
   selector:
-    app: nginx-server
+    tier: backend
   type: NodePort
   ports:
     - protocol: TCP
-      port: 8080
+      port: 8084
       targetPort: 80
       name: https
