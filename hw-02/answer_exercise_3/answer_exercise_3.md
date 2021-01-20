@@ -18,17 +18,18 @@ Configuramos nuestro yaml como se muestra a continuación:
 **service1.yaml**
 
 ```yaml
-apiVersion: networking.k8s.io/v1
-kind: LoadBalancer
+apiVersion: v1
+kind: Service
 metadata:
   name: nginx-lb
 spec:
+  type: LoadBalancer
   selector:
     app: nginx-server
   ports:
-    - port: 8765
-      targetPort: 80
-  type: LoadBalancer
+  - protocol: TCP
+    port: 80
+    targetPort: 80
 ```
 ```sh
 
@@ -40,6 +41,11 @@ $ kubectl get services
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/service1.0.png  "Load Balancer Service")
 
+Use the external IP address (LoadBalancer Ingress) to access the Hello World application:
+
+curl http://<external-ip>:<port>
+where <external-ip> is the external IP address (LoadBalancer Ingress) of your Service, and <port> is the value of Port in your Service description. If you are using minikube, typing minikube service my-service will automatically open the Hello World application in a browser.
+
 **2. De forma interna, sin acceso desde el exterior (crea service2.yaml)**
 
 Para esto debemos crear un servicio de tipo ClusterIP
@@ -49,15 +55,19 @@ Configuramos nuestro yaml como se muestra a continuación:
 **service2.yaml**
 
 ```yaml
+apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-server
+  name: nginx
+  labels:
+    app: nginx-server
+    tier: backend
 spec:
   selector:
-    app: nginx-server
+    tier: backend
   ports:
     - protocol: TCP
-      port: 80 
+      port: 80
 ```
 
 Esta especificación creará un servicio con target al puerto TCP 80 en cualquier Pod con la etiqueta app: nginx-server
@@ -73,22 +83,27 @@ $ kubectl get services
 
 ```sh
 
-$ kubectl describe service nginx-server
+$ kubectl describe service nginx
 
 ```
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/services2.1.png  "ClusterIP Service")
 
-Para verificar que mi servicio funciona correctamente, podemos hacer un curl localhost:80 dentro del cluster
+Crear firewall rule
+gcloud compute firewall-rules create test-node-port --allow tcp:node-port
+
+Para verificar que mi servicio funciona correctamente..
+You should now be able to curl the nginx Service on <CLUSTER-IP>:<PORT> from any node in your cluster
 
 ```sh
+$ kubectl get pods 
 
-$ kubectl exec -it nginx-server-v1 -- bash
+$ kubectl exec -it <podName> -- bash
 
 ```
 ```sh
 
-root@nginx-server-v1:/# curl localhost:80
+root@nginx-server-v1:/# curl 10.68.1.81:80
 
 ```
 

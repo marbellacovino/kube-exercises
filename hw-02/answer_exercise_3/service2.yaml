@@ -1,10 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-server
+  name: nginx
+  labels:
+    app: nginx-server
+    tier: backend
 spec:
   selector:
-    app: nginx-server
+    tier: backend
   ports:
     - protocol: TCP
       port: 80

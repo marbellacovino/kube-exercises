@@ -33,6 +33,8 @@ spec:
       containers:
       - name: nginx-server
         image: nginx:1.19.4
+        ports:
+        - containerPort: 80
 ```
 Ahora creamos el ReplicaSet a partir de nuestro archivo de configuración replicaset.yaml:
 

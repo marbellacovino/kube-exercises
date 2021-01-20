@@ -1,11 +1,14 @@
-apiVersion: networking.k8s.io/v1
-kind: LoadBalancer
+apiVersion: v1
+kind: Service
 metadata:
   name: nginx-lb
+  labels:
+    app: nginx-server
+    tier: backend
 spec:
   selector:
-    app: nginx-server
+    tier: backend
   ports:
-    - port: 8765
+    - port: 80
       targetPort: 80
   type: LoadBalancer
