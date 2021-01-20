@@ -53,7 +53,7 @@ Como podemos ver el cluster todavia no tiene pods, servicios o deployments...
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/service1.0.png  "Load Balancer Service")
 
-Ahora que estamos en nuestro cluster en la nube vamos a crear el replicaSet a partir del replicaset.yaml del apartado anterior y el servicio load balancer (service1.yaml) previamente configurado.
+Ahora que estamos en nuestro cluster en la nube vamos a crear el replicaSet a partir del [replicaset.yaml](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/answer_exercise_2/replicaset.yaml) del apartado anterior y el servicio load balancer (service1.yaml) previamente configurado.
 
 Desde la línea de comandos de kubectl ejecutamos:
 
