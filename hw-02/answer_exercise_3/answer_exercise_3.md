@@ -99,7 +99,7 @@ $ kubectl get pods
 $ kubectl exec -it <podName> -- bash
 
 ```
-<curl <CLUSTER-IP>:<PORT> >
+<!--curl <CLUSTER-IP>:<PORT> -->
 ```sh
 
 root@nginx-server-v1:/# curl 10.68.1.81:80
