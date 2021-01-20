@@ -46,6 +46,8 @@ Use the external IP address (LoadBalancer Ingress) to access the Hello World app
 curl http://<external-ip>:<port>
 where <external-ip> is the external IP address (LoadBalancer Ingress) of your Service, and <port> is the value of Port in your Service description. If you are using minikube, typing minikube service my-service will automatically open the Hello World application in a browser.
 
+Crear firewall rule
+gcloud compute firewall-rules create test-node-port --allow tcp:node-port
 **2. De forma interna, sin acceso desde el exterior (crea service2.yaml)**
 
 Para esto debemos crear un servicio de tipo ClusterIP
@@ -89,11 +91,7 @@ $ kubectl describe service nginx
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/services2.1.png  "ClusterIP Service")
 
-Crear firewall rule
-gcloud compute firewall-rules create test-node-port --allow tcp:node-port
-
-Para verificar que mi servicio funciona correctamente..
-You should now be able to curl the nginx Service on <CLUSTER-IP>:<PORT> from any node in your cluster
+Para verificar que mi servicio funciona correctamente, hago un curl mi servicio nginx dentro de uno de mis pods...
 
 ```sh
 $ kubectl get pods 
@@ -102,7 +100,7 @@ $ kubectl exec -it <podName> -- bash
 
 ```
 ```sh
-
+///curl <CLUSTER-IP>:<PORT>
 root@nginx-server-v1:/# curl 10.68.1.81:80
 
 ```
