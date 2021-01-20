@@ -9,7 +9,7 @@
 
 ## Desarrollo
 
-**1. Exponiendo el servicio hacia el exterior (crea service1.yaml) LoadBalancer or Ingress Controller**
+**1. Exponiendo el servicio hacia el exterior (crea service1.yaml)**
 
 Para esto debemos crear un servicio de tipo LoadBalancer
 
