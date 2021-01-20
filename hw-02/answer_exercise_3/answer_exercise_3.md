@@ -22,14 +22,16 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx-lb
-spec:
-  type: LoadBalancer
-  selector:
+  labels:
     app: nginx-server
+    tier: backend
+spec:
+  selector:
+    tier: backend
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 80
+    - port: 80
+      targetPort: 80
+  type: LoadBalancer
 ```
 
 Una vez configurado mi servicio, vamos a iniciar googleCloud y conectarnos a nuestro cluster, esto lo hacemos desde la línea de comandos de kubectl ejecutando:
