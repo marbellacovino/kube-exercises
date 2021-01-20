@@ -31,15 +31,21 @@ spec:
     port: 80
     targetPort: 80
 ```
+
+Primero debemos iniciar googleCloud y conectarnos a nuestro cluster, esto lo hacemos desde la línea de comandos de kubectl ejecutando:
+
 ```sh
 $ gcloud init
 
-$ gcloud container clusters get-credentials cluster-1 --zone europe-west3-b --project kubernetes-hw02
+$ $ gcloud container clusters get-credentials cluster-1 --zone europe-west3-b --project kubernetes-hw02
+
+```
+
+```sh
 
 $ kubectl get all 
 
 ```
-
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/service1.0.png  "Load Balancer Service")
 
 ```sh
@@ -75,6 +81,8 @@ $  minikube service nginx-lb
 ```
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/service1.3.png  "Load Balancer Service")
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/service1.4.png  "Load Balancer Service")
 
 
 **2. De forma interna, sin acceso desde el exterior (crea service2.yaml)**
