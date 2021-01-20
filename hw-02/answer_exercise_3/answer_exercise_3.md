@@ -32,6 +32,19 @@ spec:
     targetPort: 80
 ```
 ```sh
+$ gcloud init
+
+$ gcloud container clusters get-credentials cluster-1 --zone europe-west3-b --project kubernetes-hw02
+
+$ kubectl get all 
+
+```
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/service1.0.png  "Load Balancer Service")
+
+```sh
+
+$ kubectl create -f answer_exercise_2/replicaset.yaml
 
 $ kubectl create -f answer_exercise_3/service1.yaml  
 
@@ -39,15 +52,31 @@ $ kubectl get services
 
 ```
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/service1.0.png  "Load Balancer Service")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/service1.1.png  "Load Balancer Service")
 
-Use the external IP address (LoadBalancer Ingress) to access the Hello World application:
+Ahora u tilizo la dirección IP externa (LoadBalancer Ingress) para acceder a la aplicación Nginx:
 
-curl http://<external-ip>:<port>
-where <external-ip> is the external IP address (LoadBalancer Ingress) of your Service, and <port> is the value of Port in your Service description. If you are using minikube, typing minikube service my-service will automatically open the Hello World application in a browser.
+```sh
 
-Crear firewall rule
-gcloud compute firewall-rules create test-node-port --allow tcp:node-port
+# curl http://<external-ip>:<port>
+$  curl 34.89.129.36:80
+
+```
+donde <external-ip> es la dirección IP externa (LoadBalancer Ingress) de nginx-lb, y <port> es el valor de Port en la descripción del servicio nginx-lb.
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/service1.2.png  "Load Balancer Service")
+
+Como estamos utilizando minikube, al escribir minikube service my-service se abrirá automáticamente el contenido de Nginx en un navegador.
+
+```sh
+
+$  minikube service nginx-lb
+
+```
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/service1.3.png  "Load Balancer Service")
+
+
 **2. De forma interna, sin acceso desde el exterior (crea service2.yaml)**
 
 Para esto debemos crear un servicio de tipo ClusterIP
