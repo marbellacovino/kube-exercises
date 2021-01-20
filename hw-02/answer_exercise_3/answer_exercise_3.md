@@ -91,7 +91,7 @@ $ kubectl describe service nginx
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/services2.1.png  "ClusterIP Service")
 
-Para verificar que mi servicio funciona correctamente, hago un curl mi servicio nginx dentro de uno de mis pods...
+Para verificar que mi servicio funciona correctamente, hago un curl de mi servicio nginx dentro de uno de mis pods...
 
 ```sh
 $ kubectl get pods 
@@ -99,8 +99,9 @@ $ kubectl get pods
 $ kubectl exec -it <podName> -- bash
 
 ```
+<curl <CLUSTER-IP>:<PORT> >
 ```sh
-///curl <CLUSTER-IP>:<PORT>
+
 root@nginx-server-v1:/# curl 10.68.1.81:80
 
 ```
