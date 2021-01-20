@@ -32,7 +32,7 @@ spec:
     targetPort: 80
 ```
 
-Primero debemos iniciar googleCloud y conectarnos a nuestro cluster, esto lo hacemos desde la línea de comandos de kubectl ejecutando:
+Una vez configurado mi servicio, vamos a iniciar googleCloud y conectarnos a nuestro cluster, esto lo hacemos desde la línea de comandos de kubectl ejecutando:
 
 ```sh
 $ gcloud init
