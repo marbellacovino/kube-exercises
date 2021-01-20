@@ -120,7 +120,7 @@ spec:
       port: 80
 ```
 
-Esta especificación creará un servicio con target al puerto TCP 80 en cualquier Pod con la etiqueta app: nginx-server
+Esta especificación creará un servicio con target al puerto TCP 80 en cualquier Pod con la etiqueta tier:backend
 
 ```sh
 
