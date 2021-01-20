@@ -3,17 +3,45 @@
 
 ## Desarrollo
 
-Configuramos nuestro yaml como se muestra a continuación:
+Configuramos nuestro Blue Deployment deployment-v1.yaml como se muestra a continuación:
 
-**deployment.yaml**
+**deployment-v1.yaml**
 
 ```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-blue
+  labels:
+    app: nginx-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx-blue
+      version: blue
+  template:
+    metadata:
+      labels: 
+        app: nginx-blue
+        version: blue
+    spec:
+      containers:
+      - image: marbellacovino/nginx:1.0
+        name: nginx-blue
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "100m"
+        ports:
+          - containerPort: 80
 
 ```
 
-Y creamos nuestro deployment con el siguiente comando:
-
-Desde el directorio answer_exercise_5
+Desde el directorio answer_exercise_5 creamos nuestro deployment con el siguiente comando:
 
 ```sh
 
@@ -21,14 +49,65 @@ $ kubectl apply -f deployment-v1.yaml
 $ kubectl apply -f deployment-v2.yaml
 
 ```
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/deployment.png  "Deployment")
+
+```sh
+
+$ kubectl get deployments
+$ kubectl get pods --watch
+
+```
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/bluegreen1.0.png  "Deployment")
 
 ```sh
 
 $ kubectl apply -f service.yaml
 
+$ kubectl get services
+
+```
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/bluegreen1.1.png  "Deployment")
+
+```sh
+
+$ kubectl describe service nginx-bluegreensvc
+
+```
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/bluegreen1.2.png  "Deployment")
+
+```sh
+
+$ minikube ip
+
+$ curl 192.168.64.2:30934
+
 ```
 
- kubectl patch service nginx-bluegreensvc -p '{"spec":{"selector":{"app":"nginx-green","version":"v2.0.0"}}}'
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/bluegreen1.4.png  "Deployment")
 
-kubectl delete -f deployment-v1.yaml
+```sh
+
+$ kubectl patch service nginx-bluegreensvc -p '{"spec":{"selector":{"version":"v2.0.0"}}}'
+
+$ kubectl describe service nginx-bluegreensvc
+
+```
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/bluegreen1.5.png  "Deployment")
+
+```sh
+
+$ kminikube ip
+
+$ curl 192.168.64.2:30934
+
+```
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/bluegreen1.6.png  "Deployment")
+
+```sh
+
+$ kubectl delete -f deployment-v1.yaml
+
+```
+
+ ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/bluegreen1.7.png  "Deployment")

@@ -8,13 +8,11 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: nginx-green
-      version: green
+      version: v2.0.0
   template:
     metadata:
       labels: 
-        app: nginx-green
-        version: green
+        version: v2.0.0
     spec:
       containers:
       - image: marbellacovino/nginx:2.0
