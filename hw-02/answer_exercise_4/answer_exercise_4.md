@@ -171,17 +171,27 @@ Creamos nuestro deployment con el siguiente comando:
 
 $ kubectl create -f app-ramped.yaml --record
 
-$ kubectl get pods
-
 ```
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/ramped1.0.png  "Ramped1.0")
+
+En otro terminal:
 
 ```sh
 
-$ kubectl describe pod/<podName>
+$ kubectl get pods
 
 ```
-kubectl get pods --watch
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/ramped1.0.png  "Ramped1.0")
+
+
+En otro terminal:
+
+```sh
+
+$ kubectl get pods --watch
+
+```
+
 
 Revisamos la version actual de nuestro servicio con el siguiente comando:
 
