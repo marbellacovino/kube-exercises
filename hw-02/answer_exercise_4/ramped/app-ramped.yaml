@@ -1,26 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-ramped
+  name: nginx-v2
   labels:
-    app: nginx-server
+    app: nginx-v2-deployment
 spec:
   replicas: 3
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 2  
-      maxUnavailable: 0
   selector:
     matchLabels:
-      app: nginx-server
+      tier: backend
   template:
     metadata:
       labels: 
-        app: nginx-server
+        tier: backend
     spec:
       containers:
-      - image: marbellacovino/nginx:1.0
+      - image: marbellacovino/nginx:2.0
         name: nginx
         resources:
           requests:

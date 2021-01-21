@@ -1,10 +1,9 @@
 apiVersion: apps/v1
-kind: ReplicaSet
+kind: Deployment
 metadata:
-  name: nginx-rs
+  name: nginx-v1
   labels:
-    app: nginx-rs
-    tier: backend
+    app: nginx-v1-deployment
 spec:
   replicas: 3
   selector:
@@ -12,12 +11,11 @@ spec:
       tier: backend
   template:
     metadata:
-      labels:
-        app: nginx
-      name: nginx-v1
+      labels: 
+        tier: backend
     spec:
       containers:
-      - image: nginx:1.19.4
+      - image: marbellacovino/nginx:1.0
         name: nginx
         resources:
           requests:
@@ -26,5 +24,5 @@ spec:
           limits:
             memory: "256Mi"
             cpu: "100m"
-      dnsPolicy: Default
-      restartPolicy: Never
+        ports:
+          - containerPort: 80
