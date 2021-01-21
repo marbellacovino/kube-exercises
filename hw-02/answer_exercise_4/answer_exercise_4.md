@@ -145,13 +145,12 @@ $ kubectl describe pod
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.4.png  "Recreate1.4")
 
 
-[![Recreate Strategy](http://img.youtube.com/vi/w4AVHyiALh4/0.jpg)](http://www.youtube.com/watch?v=w4AVHyiALh4 "Recreate Strategy")
-
+**[Recreate Strategy Video-->](http://www.youtube.com/watch?v=w4AVHyiALh4)**
 
 
 ### Despliega una nueva versión haciendo “rollout deployment”
 
-[![RampedStrategy](http://img.youtube.com/vi/roOA65TDuvI/0.jpg)](http://www.youtube.com/watch?v=roOA65TDuvI "RampedStrategy")
+**[Ramped Strategy Video-->](http://www.youtube.com/watch?v=roOA65TDuvI)**
 
 Editamos nuestro .yaml con la siguiente caracteristíca:
 
@@ -229,6 +228,8 @@ $ kubectl describe pod nginx-ramped-7cdd9f7b4f-2bhl5
 
 ### Rollback a mi versión anterior
 
+**[Rollback Video-->](https://youtu.be/kockHI1JCKY)**
+
 ```sh
 
 $ kubectl rollout history deployment nginx-ramped
@@ -236,10 +237,6 @@ $ kubectl rollout history deployment nginx-ramped
 $ kubectl kubectl rollout undo deployment nginx-ramped --to-revision=1
 
 ```
-[![RollBack](http://img.youtube.com/vi/kockHI1JCKY/0.jpg)](http://www.youtube.com/watch?v=kockHI1JCKY "RollBack")
-
-
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/rollback.gif   "Rollback GIF")
 
 ## EXTRA: En el directorio dockerHub se realizaron pasos previos al desarrollo
 
