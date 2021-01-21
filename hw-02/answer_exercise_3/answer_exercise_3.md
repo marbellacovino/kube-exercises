@@ -156,7 +156,7 @@ Para verificar que mi servicio funciona correctamente, hago un curl de mi servic
 ```sh
 $ kubectl get pods 
 
-$ kubectl exec -it <podName> -- bash
+$ kubectl exec -it pod/<podName> -- bash
 
 ```
 

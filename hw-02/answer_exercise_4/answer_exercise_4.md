@@ -46,7 +46,7 @@ spec:
 
 ### Despliegue mediante recreación:
 
-**Recreate Strategy Video:**[http://www.youtube.com/watch?v=w4AVHyiALh4](http://www.youtube.com/watch?v=w4AVHyiALh4)
+**Solución completa en video-->**[Recreate Strategy Video](http://www.youtube.com/watch?v=w4AVHyiALh4)
 
 Para desplegar una versión de nuestro servicio con la estrategia **Recreate** (.spec.strategy.type==Recreate), debemos editar nuestro .yaml con la siguiente caracteristíca:
 
@@ -149,7 +149,7 @@ $ kubectl describe pod
 
 ### Despliega una nueva versión haciendo “rollout deployment”
 
-**Ramped Strategy Video-->**[http://www.youtube.com/watch?v=roOA65TDuvI](http://www.youtube.com/watch?v=roOA65TDuvI)
+**Solución completa en video-->**[Ramped Strategy Video](http://www.youtube.com/watch?v=roOA65TDuvI)
 
 Editamos nuestro .yaml con la siguiente caracteristíca:
 
@@ -227,7 +227,7 @@ $ kubectl describe pod nginx-ramped-7cdd9f7b4f-2bhl5
 
 ### Rollback a mi versión anterior
 
-**Rollback Video-->**[https://youtu.be/kockHI1JCKY](https://youtu.be/kockHI1JCKY)
+**Solución completa en video-->**[Rollback Video](https://youtu.be/kockHI1JCKY)
 
 ```sh
 
