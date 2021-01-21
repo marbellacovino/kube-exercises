@@ -145,7 +145,7 @@ $ kubectl describe pod
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/recreate1.4.png  "Recreate1.4")
 
 
-VIDEOOO
+[![Recreate Strategy](http://img.youtube.com/vi/w4AVHyiALh4/0.jpg)](http://www.youtube.com/watch?v=w4AVHyiALh4 "Recreate Strategy")
 
 
 
