@@ -184,15 +184,6 @@ $ kubectl get pods
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/ramped1.0.png  "Ramped1.0")
 
 
-En otro terminal:
-
-```sh
-
-$ kubectl get pods --watch
-
-```
-
-
 Revisamos la version actual de nuestro servicio con el siguiente comando:
 
 ```sh
@@ -209,12 +200,24 @@ Podemos ver que la version actual es la nginx:1.19.4 (nuestra versión 1.0 en el
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/ramped1.2.png  "Ramped1.2")
 
 Ahora Despliego una nueva versión de mi servicio...
+
+En un terminal vamos a visualizar el rollout de los pod con el siguiente comando:
+
+```sh
+
+$ kubectl get pods --watch
+
+```
+y en otro terminal hago el deployment de mi nueva versión ejecutando lo siguiente:
+
 ```sh
 
 $ kubectl set image deployment nginx-ramped nginx=marbellacovino/nginx:2.0 --record
 $ kubectl describe pod nginx-ramped-7cdd9f7b4f-2bhl5
 
 ```
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/ramped1.4.png  "Ramped1.4")
+
 Finalmente si ahora reviso la versión de la imagen que mi pod utiliza con un _describe pod_, vemos ahora los pods utilizan la nginx:2.0
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/ramped1.3.png  "Ramped1.3")
