@@ -13,7 +13,7 @@ spec:
   template:
     metadata:
       labels:
-        app: nginx
+        tier: backend
       name: nginx-v1
     spec:
       containers:

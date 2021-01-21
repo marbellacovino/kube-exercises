@@ -16,9 +16,9 @@ Configuramos nuestro archivo replicaset.yaml con las siguientes especificaciones
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: nginx-server
+  name: nginx-rs
   labels:
-    app: nginx-server
+    app: nginx-rs
     tier: backend
 spec:
   replicas: 3
@@ -28,19 +28,27 @@ spec:
   template:
     metadata:
       labels:
-        tier: backend
+        app: nginx
+      name: nginx-v1
     spec:
       containers:
-      - name: nginx-server
-        image: nginx:1.19.4
-        ports:
-        - containerPort: 80
+      - image: nginx:1.19.4
+        name: nginx
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "100m"
+      dnsPolicy: Default
+      restartPolicy: Never
 ```
 Ahora creamos el ReplicaSet a partir de nuestro archivo de configuración replicaset.yaml:
 
 ```sh
 
-$ kubectl create -f answer_exercise_2/replicaset.yaml
+$ kubectl create -f replicaset.yaml
 
 $ kubectl get all
 
