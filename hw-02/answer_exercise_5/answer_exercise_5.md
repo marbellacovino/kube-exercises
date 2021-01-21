@@ -40,8 +40,44 @@ spec:
           - containerPort: 80
 
 ```
+Y ahora configuro el Green Deployment deployment-v2.yaml:
 
-Desde el directorio answer_exercise_5 creamos nuestro blue deployment y servicio con el siguiente comando:
+**deployment-v2.yaml**
+
+```yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-green
+  labels:
+    app: nginx-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      version: v2.0.0
+  template:
+    metadata:
+      labels: 
+        version: v2.0.0
+    spec:
+      containers:
+      - image: marbellacovino/nginx:2.0
+        name: nginx-blue
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "100m"
+        ports:
+          - containerPort: 80
+
+```
+
+Desde el directorio answer_exercise_5 creamos nuestro blue deployment y servicio con los siguientes comandos:
 
 ```sh
 
@@ -55,7 +91,7 @@ $ kubectl get services
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/bluegreen1.1.png  "Deployment")
 
-Vamos a visualizar la version al que mi servicio se encuentra attached ejecutando el siguiente comando:
+Vamos a visualizar la version a la que mi servicio se encuentra attached ejecutando el siguiente comando:
 
 ```sh
 
