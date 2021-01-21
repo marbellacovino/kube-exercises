@@ -151,6 +151,8 @@ $ kubectl describe pod
 
 ### Despliega una nueva versión haciendo “rollout deployment”
 
+[![RampedStrategy](http://img.youtube.com/vi/roOA65TDuvI/0.jpg)](http://www.youtube.com/watch?v=roOA65TDuvI "RampedStrategy")
+
 Editamos nuestro .yaml con la siguiente caracteristíca:
 
 ```yaml
@@ -167,7 +169,7 @@ Creamos nuestro deployment con el siguiente comando:
 
 ```sh
 
-$ kubectl create -f app-ramped.yaml
+$ kubectl create -f app-ramped.yaml --record
 
 $ kubectl get pods
 
@@ -206,6 +208,18 @@ $ kubectl describe pod nginx-ramped-7cdd9f7b4f-2bhl5
 Finalmente si ahora reviso la versión de la imagen que mi pod utiliza con un _describe pod_, vemos ahora los pods utilizan la nginx:2.0
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/ramped1.3.png  "Ramped1.3")
+
+
+### Rollback a mi versión anterior
+
+```sh
+
+$ kubectl rollout history deployment nginx-ramped
+
+$ kubectl kubectl rollout undo deployment nginx-ramped --to-revision=1
+
+```
+[![RollBack](http://img.youtube.com/vi/kockHI1JCKY/0.jpg)](http://www.youtube.com/watch?v=kockHI1JCKY "RollBack")
 
 
 ## EXTRA: En el directorio dockerHub se realizaron pasos previos al desarrollo

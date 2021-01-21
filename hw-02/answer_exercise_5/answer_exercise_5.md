@@ -91,17 +91,6 @@ $ kubectl get services
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/bluegreen1.1.png  "Deployment")
 
-Vamos a visualizar la version a la que mi servicio se encuentra attached ejecutando el siguiente comando:
-
-```sh
-
-$ kubectl describe service nginx-bluegreensvc
-
-```
-Observamos que mi servicio esta attached a la v1.0.0 (blue deployment)...
-
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/bluegreen1.2.png  "Deployment")
-
 Una vez tengo mi blue deployment corriendo y mi servicio configurado a este, creo mi green deployment con el siguiente comando:
 
 ```sh
@@ -122,6 +111,19 @@ Podemos ver que ya tenemos ambos deployments corriendo
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/bluegreen1.0.png  "Deployment")
 
+Vamos a visualizar la version a la que mi servicio se encuentra attached ejecutando el siguiente comando:
+
+```sh
+
+$ kubectl describe service nginx-bluegreensvc
+
+```
+Observamos que mi servicio esta attached a la v1.0.0 (blue deployment)...
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/bluegreen1.2.png  "Deployment")
+
+Nos conectamos al servicio a traves del puerto 30934...
+
 ```sh
 
 $ minikube ip
@@ -129,8 +131,11 @@ $ minikube ip
 $ curl 192.168.64.2:30934
 
 ```
+El contenido de Nginx indica que estamos corriendo la version nginx:1.19.4, esta es la version que los pods de mi blue deployment estan corriendo.
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/bluegreen1.4.png  "Deployment")
+
+Una vez mi green deployment esta "OK" ready to go... voy a modificar mi servicio para que reciba el trafico de mi green deployment con el siguiente comando:
 
 ```sh
 
@@ -139,8 +144,11 @@ $ kubectl patch service nginx-bluegreensvc -p '{"spec":{"selector":{"version":"v
 $ kubectl describe service nginx-bluegreensvc
 
 ```
+Al revisar la nueva configuración de mi servicio observamos que la versión es la v2.0.0
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/bluegreen1.5.png  "Deployment")
+
+Me conecto de nuevo al puerto de mi servicio, para ver el contenido:
 
 ```sh
 
@@ -149,7 +157,12 @@ $ minikube ip
 $ curl 192.168.64.2:30934
 
 ```
+
+Ahora el contenido de Nginx indica que estamos corriendo la version nginx:1.19.5, esta es la version que los pods de mi green deployment estan corriendo.
+
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/bluegreen1.6.png  "Deployment")
+
+Finalmente con el servicio corriendo la nueva versión de mi deployment (green deployment) puedo borrar mi blue deployment para no gastar recursos.
 
 ```sh
 
