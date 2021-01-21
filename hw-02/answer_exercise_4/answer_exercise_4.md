@@ -213,13 +213,17 @@ y en otro terminal hago el deployment de mi nueva versión ejecutando lo siguien
 ```sh
 
 $ kubectl set image deployment nginx-ramped nginx=marbellacovino/nginx:2.0 --record
-$ kubectl describe pod nginx-ramped-7cdd9f7b4f-2bhl5
 
 ```
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/ramped1.4.png  "Ramped1.4")
 
 Finalmente si ahora reviso la versión de la imagen que mi pod utiliza con un _describe pod_, vemos ahora los pods utilizan la nginx:2.0
 
+```sh
+
+$ kubectl describe pod nginx-ramped-7cdd9f7b4f-2bhl5
+
+```
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/ramped1.3.png  "Ramped1.3")
 
 
@@ -234,6 +238,7 @@ $ kubectl kubectl rollout undo deployment nginx-ramped --to-revision=1
 ```
 [![RollBack](http://img.youtube.com/vi/kockHI1JCKY/0.jpg)](http://www.youtube.com/watch?v=kockHI1JCKY "RollBack")
 
+![Rollback](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/rollback.gif / GIF)
 
 ## EXTRA: En el directorio dockerHub se realizaron pasos previos al desarrollo
 
