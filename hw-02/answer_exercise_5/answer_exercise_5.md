@@ -171,3 +171,6 @@ $ kubectl delete -f deployment-v1.yaml
 ```
 
  ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/bluegreen1.7.png  "Deployment")
+
+
+ **Solución completa en video-->**[Blue Green Deployment Video](https://youtu.be/eN8ALu8dAJ8)

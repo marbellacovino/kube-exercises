@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - image: marbellacovino/nginx:2.0
-        name: nginx-blue
+        name: nginx-green
         resources:
           requests:
             memory: "256Mi"
