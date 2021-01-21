@@ -238,7 +238,8 @@ $ kubectl kubectl rollout undo deployment nginx-ramped --to-revision=1
 ```
 [![RollBack](http://img.youtube.com/vi/kockHI1JCKY/0.jpg)](http://www.youtube.com/watch?v=kockHI1JCKY "RollBack")
 
-![Rollback](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/rollback.gif / GIF)
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/rollback.gif   "Rollback GIF")
 
 ## EXTRA: En el directorio dockerHub se realizaron pasos previos al desarrollo
 
