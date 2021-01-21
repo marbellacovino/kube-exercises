@@ -41,14 +41,40 @@ spec:
 
 ```
 
-Desde el directorio answer_exercise_5 creamos nuestro deployment con el siguiente comando:
+Desde el directorio answer_exercise_5 creamos nuestro blue deployment y servicio con el siguiente comando:
 
 ```sh
 
 $ kubectl apply -f deployment-v1.yaml
+
+$ kubectl apply -f service.yaml
+
+$ kubectl get services
+
+```
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/bluegreen1.1.png  "Deployment")
+
+Vamos a visualizar la version al que mi servicio se encuentra attached ejecutando el siguiente comando:
+
+```sh
+
+$ kubectl describe service nginx-bluegreensvc
+
+```
+Observamos que mi servicio esta attached a la v1.0.0 (blue deployment)...
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/bluegreen1.2.png  "Deployment")
+
+Una vez tengo mi blue deployment corriendo y mi servicio configurado a este, creo mi green deployment con el siguiente comando:
+
+```sh
+
 $ kubectl apply -f deployment-v2.yaml
 
 ```
+
+Ahora en un terminal hacemos un get de nuestros deployment y en otro un pod watch con los siguientes comandos:
 
 ```sh
 
@@ -56,24 +82,9 @@ $ kubectl get deployments
 $ kubectl get pods --watch
 
 ```
+Podemos ver que ya tenemos ambos deployments corriendo
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/bluegreen1.0.png  "Deployment")
-
-```sh
-
-$ kubectl apply -f service.yaml
-
-$ kubectl get services
-
-```
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/bluegreen1.1.png  "Deployment")
-
-```sh
-
-$ kubectl describe service nginx-bluegreensvc
-
-```
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/bluegreen1.2.png  "Deployment")
 
 ```sh
 

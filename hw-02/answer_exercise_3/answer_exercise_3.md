@@ -61,8 +61,6 @@ Desde la línea de comandos de kubectl ejecutamos:
 
 ```sh
 
-$ kubectl create -f answer_exercise_2/replicaset.yaml
-
 $ kubectl create -f answer_exercise_3/service1.yaml  
 
 $ kubectl get services

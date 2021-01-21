@@ -29,7 +29,6 @@ spec:
     metadata:
       labels:
         tier: backend
-      name: nginx-v1
     spec:
       containers:
       - image: nginx:1.19.4

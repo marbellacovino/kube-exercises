@@ -163,17 +163,22 @@ spec:
       maxUnavailable: 0
 ```
 
-Desde el directorio answer_exercise_4/ramped creamos nuestro deployment con el siguiente comando:
+Creamos nuestro deployment con el siguiente comando:
 
 ```sh
-$ kubectl create -f app-default.yaml
+
 $ kubectl create -f app-ramped.yaml
-$ kubectl get deployments
+
+$ kubectl get pods
 
 ```
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/ramped11.0.png  "Ramped1.0")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/ramped1.0.png  "Ramped1.0")
 
+```sh
 
+$ kubectl describe pod/<podName>
+
+```
 kubectl get pods --watch
 
 Revisamos la version actual de nuestro servicio con el siguiente comando:
@@ -195,9 +200,12 @@ Ahora Despliego una nueva versión de mi servicio...
 ```sh
 
 $ kubectl set image deployment nginx-ramped nginx=marbellacovino/nginx:2.0 --record
+$ kubectl describe pod nginx-ramped-7cdd9f7b4f-2bhl5
 
 ```
+Finalmente si ahora reviso la versión de la imagen que mi pod utiliza con un _describe pod_, vemos ahora los pods utilizan la nginx:2.0
 
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/ramped1.3.png  "Ramped1.3")
 
 
 ## EXTRA: En el directorio dockerHub se realizaron pasos previos al desarrollo
