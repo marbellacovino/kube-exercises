@@ -28,7 +28,7 @@ spec:
   template:
     metadata:
       labels:
-        app: nginx
+        tier: backend
       name: nginx-v1
     spec:
       containers:
@@ -41,8 +41,6 @@ spec:
           limits:
             memory: "256Mi"
             cpu: "100m"
-      dnsPolicy: Default
-      restartPolicy: Never
 ```
 Ahora creamos el ReplicaSet a partir de nuestro archivo de configuración replicaset.yaml:
 
@@ -53,7 +51,7 @@ $ kubectl create -f replicaset.yaml
 $ kubectl get all
 
 ```
-Una vez creado con *kubectl get all* podemos ver las 3 nuevas replicas de nuestro pod nginx y el replicaset configurado a 3 replicas:
+Una vez creado con **kubectl get all** podemos ver las 3 nuevas replicas de nuestro pod nginx y el replicaset configurado a 3 replicas:
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-02/images/replica1.0.png  "ReplicaSet")
 
@@ -63,7 +61,7 @@ Ahora para escalar el numero de replicas a 10....
 
 ```sh
 
-$ kubectl scale --replicas=10 replicaset nginx-server
+$ kubectl scale --replicas=10 replicaset nginx-rs
 
 ```
 para visualizar el resultado:
