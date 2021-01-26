@@ -1,0 +1,2 @@
+repo: https://github.com/marbellacovino/kube-exercises.git
+commit ced634b8f8e2c76a197018155ed06109f79fa627
