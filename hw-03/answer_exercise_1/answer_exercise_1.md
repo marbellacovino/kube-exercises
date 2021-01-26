@@ -32,7 +32,7 @@ http://<student_name>.student.lasalle.com
 
 ```
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer1/ingress1.0  "Ingress 1.0")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer1/ingress1.0.png  "Ingress 1.0")
 
 ## Paso 2:
 
@@ -43,7 +43,7 @@ Configurar mi ip y dns, agregando 192.168.64.2 marbella.student.lasalle.nip.io a
   $sudo nano etc/hosts
 
 ```
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer1/ingress1.2  "Ingress 1.2")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer1/ingress1.2.png  "Ingress 1.2")
 
 Esto envía solicitudes desde marbella.student.lasalle.nip.io a Minikube.
 
@@ -52,7 +52,7 @@ Esto envía solicitudes desde marbella.student.lasalle.nip.io a Minikube.
 Verificar que el controlador de Ingress esta dirigiendo el tráfico a través de la siguiente URL:
 http://marbella.student.lasalle.nip.io
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer1/ingress1.3  "Ingress 1.3")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer1/ingress1.3.png  "Ingress 1.3")
 
 # Desarrollo parte 2: TLS
 
@@ -65,7 +65,7 @@ Crear un certificado mediante la herramienta OpenSSL:
   $openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:4096 -keyout private.key -out certificate.crt
 
 ```
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer1/ingress1.4  "Ingress 1.4")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer1/ingress1.4.png  "Ingress 1.4")
 
 ## Paso 2:
 
@@ -141,8 +141,8 @@ Ejecutar en la linea de comandos de kubectl:
 Verificar que el controlador de Ingress esta dirigiendo el tráfico a través de la siguiente URL:
 http://marbella.student.lasalle.nip.io
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer1/ingress1.5  "Ingress 1.5")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer1/ingress1.5.png  "Ingress 1.5")
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer1/ingress1.6  "Ingress 1.6")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer1/ingress1.6.png  "Ingress 1.6")
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer1/ingress1.7  "Ingress 1.7")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer1/ingress1.7.png  "Ingress 1.7")
