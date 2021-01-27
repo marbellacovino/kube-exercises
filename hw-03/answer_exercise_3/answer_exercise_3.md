@@ -19,14 +19,14 @@ A partir de un objeto de deployment de Nginx con las siguientes especificaciones
     • Requests:
     CPU: 1 milicores Memoria: 128Mi
 
-Creo mi objeto de deployment, servicio y escalo automáticamente a 6 replicas cuando mi cpu=0.5m, es decir, al 50% de cpu utilizado:
+Creo mi objeto de deployment, servicio y escalar automáticamente a 6 replicas cuando mi cpu=0.5m, es decir, al 50% de cpu utilizado:
 
 ```sh
 
-$kubectl create -f deployment.yaml
-$kubectl create -f service.yaml
-$kubectl autoscale deployment nginx --cpu-percent=50 --min=3 --max=6
-$kubectl get deployment nginx
+kubectl create -f deployment.yaml
+kubectl create -f service.yaml
+kubectl autoscale deployment nginx --cpu-percent=50 --min=3 --max=6
+kubectl get deployment nginx
 
 ```
 
