@@ -116,10 +116,14 @@ Ahora copio y pego cada pieza de datos codificados en base64 en las secciones ap
 
 Configurar tls en el ingress agregando la siguiente configuración:
 
+```yaml
+
 tls:
   - hosts:
       - marbella.student.lasalle.nip.io
     secretName: nginx-tls
+    
+```
 
 En donde **secretName** es el nombre que le asigne a mi secret.yaml
 
