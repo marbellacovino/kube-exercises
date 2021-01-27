@@ -157,5 +157,5 @@ Los StatefulSets son valiosos para aquellas aplicaciones que necesitan uno o má
 
 • Actualizaciones en línea ordenadas, automatizadas.
 
-El ReplicaSet se usa para aplicaciones sin estado, NO tendriamos las caracterícas que nos proporciona un StatefulSet. Por lo tanto, si una de mis replicas muere, el servicio levantara otra nueva con un identificador diferente por lo que perderiamos el estado de replica anterior. Sin embargo podemos guardar el estado si se adjunta un volumen persistente, pero todos los pods de esta implementación compartirán el mismo volumen y los datos en todos ellos serán los mismos. 
+El ReplicaSet se usa para aplicaciones sin estado, NO tendriamos las caracterícas que nos proporciona un StatefulSet. Por lo tanto, si una de mis replicas muere, el servicio levantara otra nueva con un identificador diferente por lo que perderiamos el estado de replica anterior. Sin embargo, podemos guardar el estado si se adjunta un volumen persistente, pero todos los pods de esta implementación compartirán el mismo volumen y los datos en todos ellos serán los mismos. 
 
