@@ -29,6 +29,8 @@ http://<student_name>.student.lasalle.com
 
 ### Paso 1:
 
+Una vez he configurado los yaml de deployment, ingress y service...los creo como se muestra a continuación:
+
 ```sh
 
   $kubectl create -f deployment.yaml
@@ -101,8 +103,12 @@ type: kubernetes.io/tls
 
 En donde **tls.crt** y **tls.key** deben estar codificados en base64, para esto ejecuto lo siguiente:
 
-cat certificate.crt | base64
-cat private.key | base64
+```sh
+
+$cat certificate.crt | base64
+$cat private.key | base64
+
+```
 
 Ahora copio y pego cada pieza de datos codificados en base64 en las secciones apropiadas del archivo secret.yaml
 
@@ -124,7 +130,7 @@ En donde **secretName** es el nombre que le asigne a mi secret.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginx-ingress
+  name: nginx-ingress-tls
 spec:
   tls:
   - hosts:
@@ -149,7 +155,10 @@ Ejecutar en la linea de comandos de kubectl:
 
 ```consola
 
+  $kubectl delete ingress nginx-ingress
+
   $kubectl create -f secret.yaml
+
   $kubectl create -f ingress-tls.yaml
 
 ```
