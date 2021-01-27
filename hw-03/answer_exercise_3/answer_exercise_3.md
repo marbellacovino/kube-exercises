@@ -30,13 +30,13 @@ kubectl get deployment nginx
 
 ```
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer3/autoscale1.0.png  "autoscale1")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer3/autoscale1.png  "autoscale1")
 
 Podemos verificar el estado actual del escalador automático ejecutando:
 
 ```sh
 
-$kubectl get hpa
+kubectl get hpa
 
 ```
 
@@ -47,14 +47,14 @@ Ahora, iniciaremos un contenedor y enviaremos un bucle infinito de consultas al 
 
 ```sh
 
-$kubectl run -i --tty load-generator --rm --image=busybox --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://nginx-svc; done"
+kubectl run -i --tty load-generator --rm --image=busybox --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://nginx-svc; done"
 
 ```
 Y para ver el estado actual del escalador automático, ejecutamos en otro terminal:
 
 ```sh
 
-$kubectl get hpa --watch
+kubectl get hpa --watch
 
 ```
 
@@ -67,8 +67,8 @@ En unos minutos, deberíamos ver que la carga de CPU va incrementado:
 El consumo de CPU ha superado el 50% de la solicitud. Como resultado, las replicas de mi deployment se escalaron a 6 réplicas:
 
 ```sh
-$kubectl get pods --watch
-$kubectl get deployment nginx
+kubectl get pods --watch
+kubectl get deployment nginx
 
 ```
 
