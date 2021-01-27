@@ -145,13 +145,16 @@ db.user.find()
 
 ## Desarrollo parte 3: Diferencias que existiría si el montaje se hubiera realizado con el objeto de ReplicaSet
 
-StatefulSet proporciona garantía sobre el orden y la exclusividad de los pods. Cada replica tendrá su propio estado y cada uno de los pods creará su propio PVC. Entonces, un StatefulSet con 3 réplicas creará 3 pods, cada uno con su propio volumen, por lo que habra un total de 3 PVC. El despliegue y escalado es ordenado y controlado.
-Actualizaciones en línea ordenadas, automatizadas.
+StatefulSet proporciona garantía sobre el orden y la exclusividad de los pods. Cada replica tendrá su propio estado y cada uno de los pods creará su propio PVC. Entonces, un StatefulSet con 3 réplicas creará 3 pods, cada uno con su propio volumen, por lo que habra un total de 3 PVC. 
 
-El ReplicaSet se usa para aplicaciones sin estado, si el montaje se hubiera realizado con este objeto, no tendriamos:
-Identificadores de red estables, únicos.
-Almacenamiento estable, persistente.
-Despliegue y escalado ordenado, controlado.
-Actualizaciones en línea ordenadas, automatizadas.
+Los StatefulSets son valiosos para aquellas aplicaciones que necesitan uno o más de los siguientes:
 
-Por lo tanto, si una de mis replicas muere, el servicio levantara otra nueva con un identificador diferente por lo que perderiamos el estado de replica anterior.
+• Identificadores de red estables, únicos.
+
+• Almacenamiento estable, persistente.
+
+• Despliegue y escalado ordenado, controlado.
+
+• Actualizaciones en línea ordenadas, automatizadas.
+
+El ReplicaSet se usa para aplicaciones sin estado, NO tendriamos las caracterícas que nos proporciona un StatefulSet. Por lo tanto, si una de mis replicas muere, el servicio levantara otra nueva con un identificador diferente por lo que perderiamos el estado de replica anterior.
