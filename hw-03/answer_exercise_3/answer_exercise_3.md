@@ -62,7 +62,7 @@ kubectl get hpa --watch
 
 En unos minutos, deberíamos ver que la carga de CPU va incrementado:
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer3/autoscale1.1.png  "autoscale1.2")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer3/autoscale1.2.png  "autoscale1.2")
 
 El consumo de CPU ha superado el 50% de la solicitud. Como resultado, las replicas de mi deployment se escalaron a 6 réplicas:
 
@@ -72,4 +72,4 @@ kubectl get deployment nginx
 
 ```
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer3/autoscale1.1.png  "autoscale1.3")
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer3/autoscale1.3.png  "autoscale1.3")
