@@ -147,6 +147,8 @@ db.user.find()
 
 StatefulSet proporciona garantía sobre el orden y la exclusividad de los pods. Cada replica tendrá su propio estado y cada uno de los pods creará su propio PVC. Entonces, un StatefulSet con 3 réplicas creará 3 pods, cada uno con su propio volumen, por lo que habra un total de 3 PVC. 
 
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer2/stateful1.7.png  "stateful1.7")
+
 Los StatefulSets son valiosos para aquellas aplicaciones que necesitan uno o más de los siguientes:
 
 • Identificadores de red estables, únicos.
