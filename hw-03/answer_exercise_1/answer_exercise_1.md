@@ -1,13 +1,20 @@
 # Kubernetes - [Ingress Controller / Secrets]
 
 ## [Ingress Controller / Secrets] Crea los siguientes objetos de forma declarativa con las siguientes especificaciones:
+
 • Imagen: nginx
+
 • Version: 1.19.4
+
 • 3 replicas
+
 • Label: app: nginx-server
+
 • Exponer el puerto 80 de los pods
+
 • Limits:
 CPU: 20 milicores Memoria: 128Mi
+
 • Requests:
 CPU: 20 milicores Memoria: 128Mi
 
@@ -25,9 +32,13 @@ http://<student_name>.student.lasalle.com
 ```sh
 
   $kubectl create -f deployment.yaml
+
   $kubectl create -f service.yaml
+
   $kubectl create -f ingress.yaml
+
   $kubectl get all
+
   $kubectl get ingress
 
 ```
@@ -73,6 +84,8 @@ Una vez tengo mi certificado y llave privada debo crear un secret.yaml para guar
 
 **secret.yaml**
 
+```yaml
+
 apiVersion: v1
 kind: Secret
 metadata:
@@ -82,6 +95,9 @@ data:
   tls.crt: base64 encoded cert
   tls.key: base64 encoded key
 type: kubernetes.io/tls
+
+
+```
 
 En donde **tls.crt** y **tls.key** deben estar codificados en base64, para esto ejecuto lo siguiente:
 
@@ -102,6 +118,7 @@ tls:
 En donde **secretName** es el nombre que le asigne a mi secret.yaml
 
 **ingress-tls.yaml**
+
 ```yaml
 
 apiVersion: networking.k8s.io/v1
@@ -130,7 +147,7 @@ spec:
 
 Ejecutar en la linea de comandos de kubectl:
 
-```sh
+```consola
 
   $kubectl create -f secret.yaml
   $kubectl create -f ingress-tls.yaml
