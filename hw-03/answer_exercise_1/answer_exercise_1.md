@@ -2,21 +2,21 @@
 
 ## [Ingress Controller / Secrets] Crea los siguientes objetos de forma declarativa con las siguientes especificaciones:
 
-• Imagen: nginx
+    • Imagen: nginx
 
-• Version: 1.19.4
+    • Version: 1.19.4
 
-• 3 replicas
+    • 3 replicas
 
-• Label: app: nginx-server
+    • Label: app: nginx-server
 
-• Exponer el puerto 80 de los pods
+    • Exponer el puerto 80 de los pods
 
-• Limits:
-CPU: 20 milicores Memoria: 128Mi
+    • Limits:
+    CPU: 20 milicores Memoria: 128Mi
 
-• Requests:
-CPU: 20 milicores Memoria: 128Mi
+    • Requests:
+    CPU: 20 milicores Memoria: 128Mi
 
 1. A continuación, tras haber expuesto el servicio en el puerto 80, se deberá acceder a la página principal de Nginx a través de la siguiente URL:
 http://<student_name>.student.lasalle.com
@@ -25,9 +25,9 @@ http://<student_name>.student.lasalle.com
 • Crear un certificado mediante la herramienta OpenSSL u otra similar
 • Crear un secret que contenga el certificado
 
-# Desarrollo parte 1:
+## Desarrollo parte 1:
 
-## Paso 1:
+### Paso 1:
 
 ```sh
 
@@ -45,7 +45,7 @@ http://<student_name>.student.lasalle.com
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer1/ingress1.0.png  "Ingress 1.0")
 
-## Paso 2:
+### Paso 2:
 
 Configurar mi ip y dns, agregando 192.168.64.2 marbella.student.lasalle.nip.io al final del archivo /etc/hosts:
 
@@ -58,16 +58,16 @@ Configurar mi ip y dns, agregando 192.168.64.2 marbella.student.lasalle.nip.io a
 
 Esto envía solicitudes desde marbella.student.lasalle.nip.io a Minikube.
 
-## Paso 3:
+### Paso 3:
 
 Verificar que el controlador de Ingress esta dirigiendo el tráfico a través de la siguiente URL:
 http://marbella.student.lasalle.nip.io
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer1/ingress1.3.png  "Ingress 1.3")
 
-# Desarrollo parte 2: TLS
+## Desarrollo parte 2: TLS
 
-## Paso 1: 
+### Paso 1: 
 
 Crear un certificado mediante la herramienta OpenSSL:
 
@@ -78,7 +78,7 @@ Crear un certificado mediante la herramienta OpenSSL:
 ```
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer1/ingress1.4.png  "Ingress 1.4")
 
-## Paso 2:
+### Paso 2:
 
 Una vez tengo mi certificado y llave privada debo crear un secret.yaml para guardar estos datos sensibles.
 
@@ -106,7 +106,7 @@ cat private.key | base64
 
 Ahora copio y pego cada pieza de datos codificados en base64 en las secciones apropiadas del archivo secret.yaml
 
-## Paso 3:
+### Paso 3:
 
 Configurar tls en el ingress agregando la siguiente configuración:
 
@@ -143,7 +143,7 @@ spec:
                   number: 80
 
 ```
-## Paso 4:
+### Paso 4:
 
 Ejecutar en la linea de comandos de kubectl:
 
@@ -153,7 +153,7 @@ Ejecutar en la linea de comandos de kubectl:
   $kubectl create -f ingress-tls.yaml
 
 ```
-## Paso 5:
+### Paso 5:
 
 Verificar que el controlador de Ingress esta dirigiendo el tráfico a través de la siguiente URL:
 http://marbella.student.lasalle.nip.io
