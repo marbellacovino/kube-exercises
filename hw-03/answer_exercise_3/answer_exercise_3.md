@@ -14,22 +14,23 @@ A partir de un objeto de deployment de Nginx con las siguientes especificaciones
     • 3 replicas
 
     • Limits:
-    CPU: 5 milicores Memoria: 128Mi
+    CPU: 1 milicores Memoria: 128Mi
 
     • Requests:
-    CPU: 5 milicores Memoria: 128Mi
+    CPU: 1 milicores Memoria: 128Mi
 
-Creo mi objeto de deployment, servicio y escalo automáticamente a 6 replicas cuando mi cpu=2.5m, es decir, al 50% de cpu utilizado con los siguientes comandos:
+Creo mi objeto de deployment, servicio y escalo automáticamente a 6 replicas cuando mi cpu=0.5m, es decir, al 50% de cpu utilizado:
 
 ```sh
 
 $kubectl create -f deployment.yaml
 $kubectl create -f service.yaml
-$kubectl autoscale deployment nginx --cpu-percent=50 --min=1 --max=6
+$kubectl autoscale deployment nginx --cpu-percent=50 --min=3 --max=6
+$kubectl get deployment nginx
 
 ```
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer3/hpa1.0.png  "HPA1.0")
 
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer3/autoscale1.0.png  "autoscale1")
 
 Podemos verificar el estado actual del escalador automático ejecutando:
 
@@ -39,6 +40,9 @@ $kubectl get hpa
 
 ```
 
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer3/autoscale1.0.png  "autoscale1.0")
+
+
 Ahora, iniciaremos un contenedor y enviaremos un bucle infinito de consultas al servicio de nginx para observar cómo reacciona el escalador automático al aumento de carga. En un terminal diferente ejecuto:
 
 ```sh
@@ -46,17 +50,26 @@ Ahora, iniciaremos un contenedor y enviaremos un bucle infinito de consultas al 
 $kubectl run -i --tty load-generator --rm --image=busybox --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://nginx-svc; done"
 
 ```
-En unos minutos, deberíamos ver que la carga de CPU ha incrementado ejecutando:
+Y para ver el estado actual del escalador automático, ejecutamos en otro terminal:
 
 ```sh
 
-$kubectl get hpa
+$kubectl get hpa --watch
 
 ```
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer3/autoscale1.1.png  "autoscale1.1")
+
+En unos minutos, deberíamos ver que la carga de CPU va incrementado:
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer3/autoscale1.1.png  "autoscale1.2")
+
 El consumo de CPU ha superado el 50% de la solicitud. Como resultado, las replicas de mi deployment se escalaron a 6 réplicas:
 
 ```sh
-
+$kubectl get pods --watch
 $kubectl get deployment nginx
 
 ```
+
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer3/autoscale1.1.png  "autoscale1.3")
