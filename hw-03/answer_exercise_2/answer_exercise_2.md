@@ -85,11 +85,11 @@ donde **mongo-0.mongo-svc.default.svc.cluster.local** es nuestro hostname
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer2/stateful1.3.png  "stateful1.3")
 
-Si volvemos a revisar el estado:
+Si ahora a reviso la configuración:
 
 ```sh
 
-rs.status()
+rs.config()
 
 ``` 
 
@@ -97,11 +97,51 @@ Vemos que el replicaset de MongoDB ha sido configurado...
 
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer2/stateful1.4.png  "stateful1.4")
 
-![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer2/stateful1.5.png  "stateful1.5")
-
 ## Desarrollo parte 2: Realizar una operación en una de las instancias a nivel de configuración y verificar que el cambio se ha aplicado al resto de instancias
 
+## Paso 1:
 
+Modifico la instancia mongo-0 como se muestra a continuación:
+
+```sh
+
+kubectl exec -it pod/mongo-0 -- bash
+mongo
+show dbs
+
+```
+Creo una nueva db:
+```sh
+
+use students
+
+```
+
+Agrego datos a mi database con el comando db.<collection>.insert:
+
+```sh
+
+db.user.insert({name: "Marbella Covino", age: 28})
+
+```
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer2/stateful1.5.png  "stateful1.5")
+
+## Paso 2:
+
+Verifico los cambios realizados en la instancia mongo-2:
+
+```sh
+
+kubectl exec -it pod/mongo-1 -- bash
+mongo
+rs.secondaryOk()
+show dbs
+use students
+show tables
+db.user.find()
+
+```
+![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer2/stateful1.6.png  "stateful1.6")
 
 ## Desarrollo parte 3: Diferencias que existiría si el montaje se hubiera realizado con el objeto de ReplicaSet
 
