@@ -99,7 +99,7 @@ Vemos que el replicaset de MongoDB ha sido configurado...
 
 ## Desarrollo parte 2: Realizar una operación en una de las instancias a nivel de configuración y verificar que el cambio se ha aplicado al resto de instancias
 
-## Paso 1:
+### Paso 1:
 
 Modifico la instancia mongo-0 como se muestra a continuación:
 
@@ -126,9 +126,9 @@ db.user.insert({name: "Marbella Covino", age: 28})
 ```
 ![Alt text](https://github.com/marbellacovino/kube-exercises/blob/main/hw-03/images/answer2/stateful1.5.png  "stateful1.5")
 
-## Paso 2:
+### Paso 2:
 
-Verifico los cambios realizados en la instancia mongo-2:
+Verifico los cambios realizados en la instancia mongo-1:
 
 ```sh
 
@@ -148,7 +148,12 @@ db.user.find()
 StatefulSet proporciona garantía sobre el orden y la exclusividad de los pods. Cada replica tendrá su propio estado y cada uno de los pods creará su propio PVC. Entonces, un StatefulSet con 3 réplicas creará 3 pods, cada uno con su propio volumen, por lo que habra un total de 3 PVC. El despliegue y escalado es ordenado y controlado.
 Actualizaciones en línea ordenadas, automatizadas.
 
-El ReplicaSet se usa para aplicaciones sin estado, sin embargo podemos guardar el estado si se adjunta un volumen persistente, pero todos los pods de esta implementación compartirán el mismo volumen y los datos en todos ellos serán los mismos. Por lo tanto  no Identificadores de red estables, únicos.
+El ReplicaSet se usa para aplicaciones sin estado, sin embargo podemos guardar el estado si se adjunta un volumen persistente, pero todos los pods de esta implementación compartirán el mismo volumen y los datos en todos ellos serán los mismos. 
+
+Si el montaje se hubiera realizado con el objeto de ReplicaSet, no tendriamos:
+Identificadores de red estables, únicos.
 Almacenamiento estable, persistente.
 Despliegue y escalado ordenado, controlado.
 Actualizaciones en línea ordenadas, automatizadas.
+
+Por lo tanto si una de mis replicas muere, el servicio levantara otra nueva 
